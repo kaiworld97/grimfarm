@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} | GRIMFARM</title>
+    <link rel="stylesheet" href="{% static '/css/base.css' %}">
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+<nav>
+    <div>
+        <a href="/">GRIMFARM</a>
+        {% if user.is_authenticated %}
+            <div>
+                <ul>
+                    <li>
+                        <a href="/user"> 친구 <span></span></a>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+        <form>
+{#            {% if not user.is_authenticated %}#}
+{#                <ul>#}
+{#                    <li>#}
+{#                        <a href="/sign-in"> Sign In11 <span class="sr-only"></span></a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="/sign-up"> Sign Up <span class="sr-only"></span></a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            {% else %}#}
+                <ul>
+                    <li>
+                    <span>
+                        {{ user.username }} 님 반갑습니다!
+                    </span>
+                    </li>
+                    <li>
+                        <a href="/logout"> 로그아웃</a>
+                    </li>
+                </ul>
+{#            {% endif %}#}
+        </form>
+    </div>
+</nav>
+
+<div class="base_content">
+{% block content %}
+{% endblock %}
+</div>
+{% block js %}
+{% endblock %}
+</body>
+</html>
