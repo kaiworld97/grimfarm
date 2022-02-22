@@ -8,7 +8,7 @@ class DrawingModel(models.Model):
     class Meta:
         db_table = "drawing"
 
-    author = models.ForeignKey(UserModel, on_delete=models.PROTECT)
+    author = models.CharField(max_length=256, blank=False)
     description = models.CharField(max_length=256, default='')
     img = models.URLField()
     category = models.CharField(max_length=30, default='')
