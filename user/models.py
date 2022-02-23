@@ -8,3 +8,6 @@ class UserModel(AbstractUser):
         db_table = "my_user"
 
     nickname = models.CharField(max_length=30, default='')
+
+
+class UserDrawingModel(models.Model):
