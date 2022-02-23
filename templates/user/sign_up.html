@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>회원가입</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{#타이틀 넣는 곳#}
+{% block title %}
+    회원 가입
+{% endblock %}
+
+{# css 파일 넣는 곳#}
+{% block css %}
+
+{% endblock %}
+
+{#자바스크립트 파일 넣는 곳#}
+{% block js %}
+
+{% endblock %}
+
+{#메인 컨텐츠 들어가는 곳#}
+{% block content %}
     <h1>회원가입</h1>
     <form method="POST">
         {% csrf_token %}
@@ -14,5 +28,4 @@
         <input name="nickname">
         <button type="submit">Create Account</button>
     </form>
-</body>
-</html>
+{% endblock %}
