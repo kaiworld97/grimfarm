@@ -11,4 +11,4 @@ class NotificationModel(models.Model):
 
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     drawing = models.ForeignKey(DrawingModel, on_delete=models.CASCADE)
-    notification_type = models.CharField(max_length=30, blank=False)
+    notification_type = models.CharField(max_length=30)
