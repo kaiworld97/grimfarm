@@ -13,6 +13,8 @@ a {
 
 .base_content {
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .material-icons {
@@ -38,32 +40,37 @@ a {
 
     /* Support for IE. */
     font-feature-settings: 'liga';
+    color: #9f9f9f;
 }
 
 nav {
     box-shadow: rgba(4, 17, 29, 0.25) 0px 0px 8px 0px;
-    max-width: 100vw;
     height: 72px;
     top: 0px;
     position: sticky;
     z-index: 110;
     transition: top 0.5s ease 0s;
     background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 nav .container {
     display: flex;
-    padding: 5px 15px;
+    padding: 0% 5%;
     align-items: center;
+    width: 100%;
 }
 
 nav .logo {
     font-size: 30px;
-    font-weight: bold;
+    font-family: 'Shizuru', cursive;
+
 }
 
 .logo_wrapper {
-    padding-right: 189px;
+    padding-right: 20%;
     display: flex;
     align-items: center;
 
@@ -81,17 +88,20 @@ nav input {
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     border: 1px solid rgb(229, 232, 235);
-    width: 700px;
+    width: 600px;
     padding: 12px;
     height: 25px;
 }
-nav .icons{
-    padding-left: 521px;
+
+nav .icons {
+    padding-left: 20%;
     width: 200px;
     display: flex;
     justify-content: space-around;
 }
+
 nav .icons i {
     font-size: 35px;
     padding: 0 20px;
+
 }
