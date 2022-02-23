@@ -10,8 +10,8 @@ class MarketModel(models.Model):
         db_table = "Market"
 
     drawing = models.ForeignKey(DrawingModel, on_delete=models.CASCADE)
-    seller = models.CharField(max_length=256, blank=False)
-    buyer = models.CharField(max_length=256, blank=False)
-    sel_price = models.IntegerField()
+    seller = models.ForeignKey(UserModel, on_delete=models.PROTECT, related_name='%(class)s_seller')
+    buyer = models.ForeignKey(UserModel, on_delete=models.PROTECT, related_name='%(class)s_buyer')
+    sell_price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

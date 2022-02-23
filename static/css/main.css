@@ -1,0 +1,31 @@
+.background_img {
+    background-size: cover;
+    background-color: rgb(255, 255, 255);
+    background-position: center center;
+    opacity: 0.3;
+    filter: blur(8px);
+    -webkit-mask: linear-gradient(rgb(255, 255, 255), transparent);
+    height: 600px;
+    position: absolute;
+    top: 5%;
+    width: 100%;
+
+}
+
+.main_footer {
+    height: 50px;
+    padding: 10px;
+}
+
+.main_img_wrapper {
+    box-shadow: rgb(4 17 29 / 25%) 0px 0px 10px 0px;
+    border-radius: 10px;
+    margin: 2% 0;
+}
+
+.main_img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
