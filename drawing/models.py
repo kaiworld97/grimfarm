@@ -9,6 +9,7 @@ class DrawingModel(models.Model):
         db_table = "drawing"
 
     author = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='%(class)s_author')
+    title = models.CharField(max_length=256)
     description = models.CharField(max_length=256, default='')
     img = models.URLField()
     category = models.CharField(max_length=30, default='')
