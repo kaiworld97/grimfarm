@@ -17,8 +17,8 @@
     <script>
         function posting() {
             let file = $('#select_file')[0].files[0]
-            let num = $('#select_num')
-            let key = $('#select_key')
+            let num = $('#select_num').val()
+            let key = $('#select_key').val()
             let form_data = new FormData()
 
             form_data.append("img", file)
@@ -27,16 +27,17 @@
 
             $.ajax({
                 type: "POST",
-                url: 'http://127.0.0.1:5000/api/v1/docs',
+                url: 'http://127.0.0.1:5000/api/v1/nsts/',
                 data: form_data,
                 cache: false,
                 contentType: false,
                 processData: false,
+                enctype: 'multipart/form-data',
                 success: function (response) {
-                    console.log(response.data)
+                    console.log(response['file_url'])
                     let output = document.getElementById('output')
                     let out_img = document.createElement("img");
-                    out_img.src = URL.createObjectURL(response.data);
+                    out_img.src = response['file_url']
                     out_img.style.width = "100%";
                     out_img.style.height = "100%";
                     out_img.style.visibility = "visible";
