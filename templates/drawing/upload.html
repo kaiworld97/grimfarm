@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{#타이틀 넣는 곳#}
+{% block title %}
+    upload
+{% endblock %}
+
+{# css 파일 넣는 곳#}
+{% block css %}
+
+{% endblock %}
+
+{#자바스크립트 파일 넣는 곳#}
+{% block js %}
+    <script>
+        function posting() {
+            let file = $('#select_file')[0].files[0]
+            let form_data = new FormData()
+
+            form_data.append("file_give", file)
+
+            $.ajax({
+                type: "POST",
+                url: 'http://127.0.0.1:5000/api/v1/docs',
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    console.log(response.data)
+                    let output = document.getElementById('output')
+                    let out_img = document.createElement("img");
+                    out_img.src = URL.createObjectURL(response.data);
+                    out_img.style.width = "100%";
+                    out_img.style.height = "100%";
+                    out_img.style.visibility = "visible";
+                    out_img.style.objectFit = "cover"
+                    output.appendChild(out_img);
+                }
+            });
+        }
+    </script>
+{% endblock %}
+
+{#메인 컨텐츠 들어가는 곳#}
+{% block content %}
+    <input type="file" id="select_file">
+    <button onclick="posting()">업로드</button>
+    <div id="output"></div>
+{% endblock %}
+

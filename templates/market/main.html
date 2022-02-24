@@ -4,11 +4,12 @@
 
 {#타이틀 넣는 곳#}
 {% block title %}
-main
+    main
 {% endblock %}
 
 {# css 파일 넣는 곳#}
 {% block css %}
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
 
 {% endblock %}
 
@@ -19,6 +20,31 @@ main
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
+    <div class="background_img" style="background-image: url({% static '/img/칸딘 후추1.png' %});"></div>
+    <div class="main_container">
+    <div class="main_img_wrapper">
+        <img class="main_img" src="{% static '/img/칸딘 후추1.png' %}">
+        <footer class="main_footer">
 
+            <img class="main_profile_img" src="{% static '/img/칸딘 후추1.png' %}">
+            <div class="main_img_des">
+                <div>
+                    칸딘 후추
+                </div>
+                <div>
+                    광민 & 지훈
+                </div>
+            </div>
+            </footer>
+    </div>
+    <div class="main_text">
+        <h1>Create your own unique things<br>
+        collect or sell unique drawing<br></h1>
+        <span>GRIMFARM is looking forward to your creativity</span>
+    </div>
+    </div>
+    <div>
+    <button class="start_btn" onclick="window.location = '/upload'">Get started</button>
+    </div>
 {% endblock %}
 

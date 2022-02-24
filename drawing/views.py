@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 
-def transfer(request):
-    pass
+def upload(request):
+    return render(request, 'drawing/upload.html')
