@@ -9,7 +9,7 @@
 
 {# css 파일 넣는 곳#}
 {% block css %}
-
+    <link rel="stylesheet" href="{% static '/css/upload.css' %}">
 {% endblock %}
 
 {#자바스크립트 파일 넣는 곳#}
@@ -17,9 +17,13 @@
     <script>
         function posting() {
             let file = $('#select_file')[0].files[0]
+            let num = $('#select_num')
+            let key = $('#select_key')
             let form_data = new FormData()
 
-            form_data.append("file_give", file)
+            form_data.append("img", file)
+            form_data.append("num", num)
+            form_data.append("key", key)
 
             $.ajax({
                 type: "POST",
@@ -46,8 +50,12 @@
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
+    <div class="input_container">
     <input type="file" id="select_file">
+    <input type="number" id="select_num">
+    <input type="text" id="select_key">
     <button onclick="posting()">업로드</button>
+    </div>
     <div id="output"></div>
 {% endblock %}
 
