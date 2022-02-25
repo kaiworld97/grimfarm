@@ -32,9 +32,9 @@
         {% endif %}
         <div class="input_wrapper">
             <i class="material-icons">search</i>
-            <form name="search" method="post" action="/search/">
+            <form  method="GET" action="/search/">
                 {% csrf_token %}
-                <input name="input"></form>
+                <input name="search"></form>
         </div>
         <div class="icons">
             <i class="material-icons">notifications_none</i>
