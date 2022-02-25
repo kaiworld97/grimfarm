@@ -10,7 +10,9 @@ a {
 :focus-visible {
     outline: 0;
 }
-
+.hidden{
+    display: none;
+}
 .base_content {
     text-align: center;
     display: flex;
