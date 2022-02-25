@@ -9,7 +9,7 @@
 
 {# css 파일 넣는 곳#}
 {% block css %}
-<link rel="stylesheet" href="{% static '/css/sign_up.css' %}">
+    <link rel="stylesheet" href="{% static '/css/sign_up.css' %}">
 {% endblock %}
 
 {#자바스크립트 파일 넣는 곳#}
@@ -19,23 +19,42 @@
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
-    <h1>회원가입</h1>
-    <form method="POST" action="/sign_up/">
-        {% csrf_token %}
-        <input name="email" value="이메일">
-        <label for="email">이메일</label>
+    <div class="wrapper-signup">
+        <div class="title">Sign Up</div>
+        <div class="container-signup">
+            <form method="POST" action="/sign_up/">
+                {% csrf_token %}
+                <div class="label-info">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-info">
+                    <input name="email" placeholder="email" autocomplete="off" required>
+                </div>
+                <div class="label-info">
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-info">
+                    <input type="password" name="password" placeholder="Password" autocomplete="off" required>
+                </div>
+                <div class="label-info">
+                    <label for="password2">Re-enter Password</label>
+                </div>
+                <div class="input-info">
+                    <input type="password" name="password2" placeholder="Re-enter password" autocomplete="off" required>
+                </div>
+                <div class="label-info">
+                    <label for="Nickname">Nickname</label>
+                </div>
+                <div class="input-info">
+                    <input name="nickname" placeholder="nickname" autocomplete="off" required>
+                </div>
+                <button type="submit">Create Account</button>
+            </form>
+            {% if error %}
+                <h3>{{ error }}</h3>
+            {% endif %}
+        </div>
 
-        <input type="password" name="password" value="비밀번호">
-        <label for="password">비밀번호</label>
+    </div>
 
-        <input type="password" name="password2" value="비밀번호 재입력">
-        <label for="password2">비밀번호 확인</label>
-
-        <input name="nickname" value="닉네임">
-        <label for="닉네임">닉네임</label>
-        <button type="submit">Create Account</button>
-    </form>
-    {% if error %}
-        <h3>{{ error }}</h3>
-    {% endif %}
 {% endblock %}

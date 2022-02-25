@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from user.models import UserModel
 from django.contrib import auth
+import re
 
 
 # Create your views here.
@@ -22,18 +24,16 @@ def sign_up(request):
         password2 = request.POST.get('password2', '')
         nickname = request.POST.get('nickname', '')
 
-
         if password != password2:
-
             return render(request, 'user/sign_up.html', {'error': '입력하신 비밀번호가 일치하지 않습니다'})
         elif username == '' or password == '' or nickname == '':
             return render(request, 'user/sign_up.html', {'error': '빈 칸이 존재합니다'})
 
+
+
         exist_user = get_user_model().objects.filter(username=username)
         exist_nick = get_user_model().objects.filter(nickname=nickname)
 
-        print(exist_user)
-        print(exist_nick)
         if len(exist_user) > 0 or len(exist_nick) > 0:
             return render(request, 'user/sign_up.html', {'error': '이미 가입 완료 된 이메일 또는 존재하는 닉네임 입니다'})
         else:
@@ -63,6 +63,12 @@ def sign_in(request):
             return redirect('/')
         else:
             return render(request, 'user/sign_in.html', {'error': '이메일 혹은 비밀번호를 확인해주세요'})
+
+
+@login_required
+def sign_out(request):
+    auth.logout(request)
+    return redirect('/')
 
 
 
