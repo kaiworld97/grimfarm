@@ -9,16 +9,98 @@ seller
 
 {# css 파일 넣는 곳#}
 {% block css %}
-
+<link rel="stylesheet" href="{% static '/css/seller.css' %}">
 {% endblock %}
 
 {#자바스크립트 파일 넣는 곳#}
 {% block js %}
-
+<script  type="text/javascript" src="{% static '/js/seller.js' %}"></script>
 {% endblock %}
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
+{#프로필상단#}
+    <div id="detail_main">
+    <div id="background_profile">
+{#         <img class="bg_img" src="{% static '/img/칸딘 후추1.png' %}">#}
+        <div id="pic_profile">
+{#            <img class="profile_img" src="{% static '/img/monday.jfif' %}">#}
+        </div>
+    </div>
+
+    <div id="profile_wrap">
+        <div id="info_profile">
+            <p id="nickname"> JIHOON </p>
+            <p id="creator">Created by  KWANGMIN </p>
+            <div id="info_trading">
+                <div class="detail_trading">
+                    <span>5.0K</span>
+                    <p>items</p>
+                </div>
+                <div class="detail_trading">
+                    <span>2.7K</span>
+                    <p>owners</p>
+                </div>
+                <div class="detail_trading">
+                    <span>0.81</span>
+                    <p>floor price</p>
+                </div>
+                <div class="detail_trading">
+                    <span>8.7K</span>
+                    <p>volume traded</p>
+                </div>
+            </div>
+            <div id="description">
+                지훈님네 후추는 귀엽습니다.. 광민님의 손길을 거쳐 더 귀엽게 되었어요... 나만 고양이 없어....
+            </div>
+        </div>
+</div>
+
+   <div class="tap_container">
+<!-- 탭 메뉴 상단 시작 -->
+	<ul class="tabs">
+		<li class="tab-link current" data-tab="tab-1">OWN</li>
+		<li class="tab-link" data-tab="tab-2">SELL</li>
+		<li class="tab-link" data-tab="tab-3">LIKE</li>
+	</ul>
+<!-- 탭 메뉴 상단 끝 -->
+<!-- 탭 메뉴 내용 시작 -->
+	<div id="tab-1" class="tab-content current">
+    <p class="tab_title">소유중인 GRIM</p>
+    <div id="grimwrap">
+        {% if drawings %}
+            {% for drawing in drawings %}
+                <div id="imgbox">
+                    <img class="main_img" src="{% static '{{ drawing.img }}' %}">
+{#                    <img class="main_img" src="{{ drawing.img }}">#}
+{#                    <img class="main_img" src="{% static '/img/칸딘 후추1.png' %}">#}
+
+                    <div id="imginfo">
+                        <div id="info_left">
+                            <p>owner: {{ drawing.owner_id }}</p>
+                            <p>creator: {{ drawing.author_id }}</p>
+                        </div>
+                        <div id="info_right">
+                            <p>price: {{ drawing.buy_price }}</p>
+                            <p>name: {{ drawing.nickname }}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+	</div>
+	<div id="tab-2" class="tab-content">
+  <p>  판매중인 GRIM  </p>
+    </div>
+	<div id="tab-3" class="tab-content">
+  <p>  좋아요한 GRIM </p>
+	</div>
+<!-- 탭 메뉴 내용 끝 -->
+</div>
+</div>
 
 {% endblock %}
 
