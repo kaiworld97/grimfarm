@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{#타이틀 넣는 곳#}
+{% block title %}
+    회원 가입
+{% endblock %}
+
+{# css 파일 넣는 곳#}
+{% block css %}
+    <link rel="stylesheet" href="{% static '/css/sign_up.css' %}">
+{% endblock %}
+
+{#자바스크립트 파일 넣는 곳#}
+{% block js %}
+
+{% endblock %}
+
+{#메인 컨텐츠 들어가는 곳#}
+{% block content %}
+    <div class="wrapper-signup">
+        <div class="title">Sign Up</div>
+        <div class="container-signup">
+            <form method="POST" action="/sign_up/">
+                {% csrf_token %}
+                <div class="label-info">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-info">
+                    <input name="email" placeholder="email" autocomplete="off" required>
+                </div>
+                <div class="label-info">
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-info">
+                    <input type="password" name="password" placeholder="Password" autocomplete="off" required>
+                </div>
+                <div class="label-info">
+                    <label for="password2">Re-enter Password</label>
+                </div>
+                <div class="input-info">
+                    <input type="password" name="password2" placeholder="Re-enter password" autocomplete="off" required>
+                </div>
+                <div class="label-info">
+                    <label for="Nickname">Nickname</label>
+                </div>
+                <div class="input-info">
+                    <input name="nickname" placeholder="nickname" autocomplete="off" required>
+                </div>
+                <button type="submit">Create Account</button>
+            </form>
+            {% if error %}
+                <h3>{{ error }}</h3>
+            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock %}
