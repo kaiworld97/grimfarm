@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{#타이틀 넣는 곳#}
+{% block title %}
+search
+{% endblock %}
+
+{# css 파일 넣는 곳#}
+{% block css %}
+<link rel="stylesheet" href="{% static '/css/search.css' %}">
+{% endblock %}
+
+{#자바스크립트 파일 넣는 곳#}
+{% block js %}
+{% endblock %}
+
+{#메인 컨텐츠 들어가는 곳#}
+{% block content %}
+    <h1>검색결과창</h1>
+    <p>{{ search }} 를 검색합니다.</p>
+
+    {% if error %}
+        <h1>No items found for this search</h1>
+    {% else %}
+<div class = 'allwrap'>
+
+
+<div class = 'item_count'>
+     <p class = 'count'>{{ all }} items</p>
+</div>
+    <div class = 'wrap'>
+         {% for drawing in page.object_list %}
+        <article id="card" class = 'box' >
+
+                <img src="{% static '/img/칸딘 후추1.png' %}" alt="이미지">
+            <div class = 'post'>
+                <div class = 'post_left'>
+                    <p>owner:{{ drawing.owner }}</p>
+                    <p>title:{{ drawing.description }}</p>
+                </div>
+                <div class = 'post_right'>
+                    <p>{{ drawing.buy_price }}won</p>
+                </div>
+            </div>
+
+
+
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+<div class = 'page'>
+    <h5>
+<!--        페이지 표시 부분-->
+        {% if page.has_previous %}
+<!--            이전 페이지가 있는지 check해줘요:)-->
+            <a href="?page={{page.previous_page_number}}&search={{search}}">이전</a>
+        {% endif %}
+        {% if all > 0 %}
+        Page {{ page.number }} of {{ page.paginator.num_pages }}
+        {% endif %}
+        {% if page.has_next %}
+<!--            다음 페이지가 있는지 check해줘요:)-->
+            <a href="?page={{page.next_page_number}}&search={{search}}">다음</a>
+        {% endif %}
+    </h5>
+
+</div>
+
+
+무한스크롤 테스트
+
+
+{% endblock %}
+

@@ -1,0 +1,72 @@
+.count {
+    text-align: left;
+    margin-left: 3%;
+
+}
+
+.wrap {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    /*grid-template: 350px/300px 300px 300px 300px;*/
+    grid-template: 1fr 1fr 1fr /19% 19% 19% 19%;
+    grid-gap: 5%;
+    justify-content: center;
+}
+
+.box {
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+#card {
+    z-index: 3;
+    cursor: pointer;
+}
+
+#card:hover {
+    box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+    -webkit-transform:scale(1.02);     /*  크롬 */
+    transition: all 0.1s ease 0s;
+}
+
+.box img {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.post {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 50%;
+
+}
+
+.post_left {
+    /*background-color: green;*/
+}
+
+.post_left p {
+    text-align: left;
+    margin-left: 0;
+    margin-top: 1px;
+    margin-bottom: 0px;
+}
+
+.post_right p {
+    /*margin-top: 2px;*/
+    /*margin-bottom: 0px;*/
+    margin: 0 auto;
+}
+
+.page {
+    margin-top: 100px;
+}
