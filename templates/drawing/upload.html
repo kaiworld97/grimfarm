@@ -19,7 +19,7 @@
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
-    <div class="upload_container">
+    <div id="upload_container">
         <div class="img_container">
             <div class="input_container">
                 <p id="input_p">이미지</p>
@@ -27,7 +27,6 @@
                 <div id="input_img_wrapper" class="input_img_wrapper hidden">
                     <img id="input_img" src="/1">
                 </div>
-
             </div>
             <div class="style_container">
                 <p id="style_p">스타일</p>
@@ -35,7 +34,6 @@
                 <div id="style_img_wrapper" class="style_img_wrapper hidden">
                     <img id="style_img" src="/1">
                 </div>
-
             </div>
         </div>
         <div id="img_options">
@@ -50,7 +48,6 @@
             <button>style from url</button>
             <button onclick="posting1()">create new thing</button>
         </div>
-
         <div id="style_box">
             {% for style in styles %}
                 <div class="select_box">
@@ -58,6 +55,18 @@
                     <span>{{ style.title }}</span>
                 </div>
             {% endfor %}
+        </div>
+    </div>
+    <div id="move_div" class="hidden">
+        <img id="move1" class="move" src="">
+        <img id="move2" class="move" src="">
+    </div>
+    <div id="output" class="hidden">
+        <img src="{% static '/img/칸딘 후추1.png' %}">
+        <div id="output_btns" class="output_btns" class="output_btns">
+            <button>retry</button>
+            <button>save</button>
+            <button>sell</button>
         </div>
     </div>
 {% endblock %}
