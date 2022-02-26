@@ -6,6 +6,20 @@ a {
     text-decoration: none;
     color: black;
 }
+.base_content button{
+    all:unset;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    color: white;
+    background-color: cornflowerblue;
+    border-radius: 24px;
+    padding: 1%;
+}
+.base_content button:hover {
+    transform: scale(0.95);
+}
+.flex{
+    display: flex;
+}
 
 :focus-visible {
     outline: 0;
@@ -83,7 +97,7 @@ nav .logo {
 nav input {
     border: 0;
     padding-left: 5px;
-    width: -webkit-fill-available;
+    width: 580px;
 }
 
 .input_wrapper {

@@ -8,16 +8,10 @@ class UserModel(AbstractUser):
     class Meta:
         db_table = "my_user"
 
-    nickname = models.CharField(max_length=30, default='')
+    nickname = models.CharField(max_length=30)
+    img = models.URLField(default='https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EC%B9%B8%EB%94%98%20%ED%9B%84%EC%B6%941.png')
+    point = models.IntegerField(default=0)
 
-
-# class UserDrawingModel(models.Model):
-#     class Meta:
-#         db_table = "my_drawing"
-#
-#     user_id = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-#     drawing_id = models.ForeignKey(DrawingModel, on_delete=models.CASCADE)
-#     category = models.CharField(max_length=30, default='')
 
 
 

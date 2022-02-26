@@ -14,6 +14,14 @@ class DrawingModel(models.Model):
     img = models.URLField()
     category = models.CharField(max_length=30, default='')
     owner = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='%(class)s_owner')
-    buy_price = models.IntegerField()
+    buy_price = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class StyleModel(models.Model):
+    class Meta:
+        db_table = "style"
+
+    title = models.CharField(max_length=30)
+    url = models.URLField()

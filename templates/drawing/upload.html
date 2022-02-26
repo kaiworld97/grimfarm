@@ -14,107 +14,51 @@
 
 {#자바스크립트 파일 넣는 곳#}
 {% block js %}
-    <script>
-        function posting() {
-            let file = $('#select_file')[0].files[0]
-            var num = $('input[name=style]:checked').val();
-            let file_id = document.getElementById('select_file').value.split('\\')[2].split('.')[0]
-            let key = String(new Date().getTime()) + file_id
-            let form_data = new FormData()
-
-
-            form_data.append("img", file)
-            form_data.append("num", num)
-            form_data.append("key", key)
-
-            $.ajax({
-                type: "POST",
-                url: 'http://127.0.0.1:5000/api/v1/nsts/',
-                data: form_data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                enctype: 'multipart/form-data',
-                success: function (response) {
-                    console.log(response['file_url'])
-                    let output = document.getElementById('output')
-                    let out_img = document.createElement("img");
-                    out_img.src = response['file_url']
-                    out_img.style.width = "100%";
-                    out_img.style.height = "100%";
-                    out_img.style.visibility = "visible";
-                    out_img.style.objectFit = "cover"
-                    output.appendChild(out_img);
-                }
-            });
-        }
-    </script>
+    <script type="text/javascript" src="{% static '/js/upload.js' %}"></script>
 {% endblock %}
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
     <div class="upload_container">
-        <div class="input_container">
-            <img src={% static '/img/디폴트.jpeg' %}>
-            <input type="file" id="select_file">
-        </div>
-        <div class="style_box">
-            <div id="select_box">
-                <img src="{% static '/img/칸딘스키.jpeg' %}">
-                <input type="radio" id="select_num" name="style" value="1">
-            </div>
+        <div class="img_container">
+            <div class="input_container">
+                <p id="input_p">이미지</p>
+                <div id="empty_img" class="empty_div">X</div>
+                <div id="input_img_wrapper" class="input_img_wrapper hidden">
+                    <img id="input_img" src="/1">
+                </div>
 
-            <div id="select_box">
-                <img src={% static '/img/피카소.jpeg' %}>
-                <input type="radio" id="select_num" name="style" value="2">
             </div>
+            <div class="style_container">
+                <p id="style_p">스타일</p>
+                <div id="empty_style" class="empty_div">X</div>
+                <div id="style_img_wrapper" class="style_img_wrapper hidden">
+                    <img id="style_img" src="/1">
+                </div>
 
-            <div id="select_box">
-                <img src={% static '/img/고흐.jpeg' %}>
-                <input type="radio" id="select_num" name="style" value="3">
-            </div>
-
-            <div id="select_box">
-                <img src={% static '/img/밥로스.jpeg' %}>
-                <input type="radio" id="select_num" name="style" value="4">
-            </div>
-
-            <div id="select_box">
-                <img src={% static '/img/호크니.jpeg' %}>
-                <input type="radio" id="select_num" name="style" value="5">
-            </div>
-
-            <div id="select_box">
-                <img src={% static '/img/뭉크.jpeg' %}>
-                <input type="radio" id="select_num" value="6">
-            </div>
-
-            <div id="select_box">
-                <img src={% static '/img/옛날.jpeg' %}>
-                <input type="radio" id="select_num" name="style" value="7">
-            </div>
-
-            <div id="select_box">
-                <img src={% static '/img/점묘.jpeg' %}>
-                <input type="radio" id="select_num" name="style" value="8">
-            </div>
-
-            <div id="select_box">
-                <img src={% static '/img/모네.jpeg' %}>
-                <input type="radio" id="select_num" name="style" value="9">
-            </div>
-
-            <div id="select_box">
-                <img src={% static '/img/고흐2.jpeg' %}>
-                <input type="radio" id="select_num" name="style" value="10">
             </div>
         </div>
+        <div id="img_options">
+            <label class="label_select" for="select_file">
+                image from local
+            </label>
+            <input type="file" id="select_file" class="hidden" accept="image/gif,image/jpeg,image/png"
+                   onchange="loadFile(this)">
+            <button>image from url</button>
+            <button>image drawing</button>
+            <button onclick="img_style_change()">image style change</button>
+            <button>style from url</button>
+            <button onclick="posting1()">create new thing</button>
+        </div>
 
+        <div id="style_box">
+            {% for style in styles %}
+                <div class="select_box">
+                    <img src="{{ style.url }}" onclick="click_style(this)">
+                    <span>{{ style.title }}</span>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <div class="transfer">
-        <button onclick="posting()">create</button>
-    </div>
-    <div id="output"></div>
-
 {% endblock %}
 

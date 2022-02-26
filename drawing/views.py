@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from .models import DrawingModel ,StyleModel
 
 def upload(request):
-    return render(request, 'drawing/upload.html')
+    styles = StyleModel.objects.all()
+    return render(request, 'drawing/upload.html', {'styles':styles})
