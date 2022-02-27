@@ -36,7 +36,8 @@
     margin: 1%;
     justify-content: center;
 }
-.select_box p{
+
+.select_box p {
     font-weight: bold;
 }
 
@@ -82,7 +83,7 @@
 .label_select {
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
     color: white;
-    background-color: cornflowerblue;
+    background-color: #8685EF;
     border-radius: 24px;
     padding: 1%;
 }
@@ -169,7 +170,7 @@
     }
     50% {
         opacity: 1;
-        transform: translateY(100px);
+        transform: translateY(80px);
     }
     100% {
         transform: translateY(0px);
@@ -183,7 +184,7 @@
     }
     50% {
         opacity: 1;
-        transform: translateY(100px);
+        transform: translateY(80px);
     }
     100% {
         transform: translateY(0px);
@@ -255,15 +256,17 @@
 
 #output {
     margin-top: 5%;
+    width: 70%;
 }
 
 .output_btns {
-    margin-top: 10%;
+    margin: 7% auto 0;
     display: none;
     width: 500px;
     justify-content: space-evenly;
 }
-.output_btns button{
+
+.output_btns button {
     padding: 2%;
 }
 
@@ -298,6 +301,8 @@
 #output img {
     animation: light 10s infinite;
     -webkit-animation: light 10s infinite;
+    max-height: 500px;
+    max-width: 500px;
 }
 
 @keyframes light {
@@ -505,3 +510,118 @@
 .controls .controls_range {
     margin-bottom: 20px;
 }
+
+.move_left_output {
+    transition: 2s;
+    transform: translateX(-318px);
+}
+
+#output_wrapper {
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#output_wrapper form {
+    display: flex;
+    flex-direction: column;
+}
+
+#output_wrapper label {
+    margin: 0 0 8%;
+    font-weight: bold;
+}
+
+#output_wrapper input {
+    all: unset;
+    width: 300px;
+    border: 1px solid rgb(202 206 211);
+    border-radius: 20px;
+    height: 40px;
+    margin: 0 0 9%;
+}
+
+#output_wrapper button {
+    width: fit-content;
+    padding: 3%;
+    margin: 10% auto 0;
+}
+#output_wrapper #output_url{
+    display: none;
+}
+
+
+/*라디오박스*/
+.radio {
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid rgb(202 206 211);
+    display: flex;
+    overflow: hidden;
+}
+
+#output_wrapper input[type=radio] {
+    position: absolute;
+    top: -1111em;
+    border: 0;
+}
+
+#output_wrapper input[type=radio]:checked ~ label[title=save]::after {
+    background: #00C896;
+    -webkit-clip-path: circle(100%);
+    clip-path: circle(100%);
+}
+
+#output_wrapper input[type=radio]:checked ~ label[title=sell]::after {
+    background: #001D74;
+    -webkit-clip-path: circle(100%);
+    clip-path: circle(100%);
+}
+
+.radio label {
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 150px;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radio label::after {
+    content: "";
+    -webkit-clip-path: circle(0%);
+    clip-path: circle(0%);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: -webkit-clip-path 500ms ease-out;
+    transition: clip-path 500ms ease-out;
+    transition: clip-path 500ms ease-out, -webkit-clip-path 500ms ease-out;
+    width: 101%;
+    z-index: -1;
+}
+
+.radio label[title=save] {
+    color: #85ffe0;
+}
+
+.radio label[title=sell] {
+    color: #6489f7;
+}
+
+/*Copyright (c) 2022 by Jake (https://codepen.io/Jake_Woods/pen/jgYxmZ)*/
+
+/*Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:*/
+
+/*The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.*/
+
+/*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/

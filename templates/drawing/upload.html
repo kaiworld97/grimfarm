@@ -89,12 +89,39 @@
         <img id="move2" class="move" src="">
     </div>
     <div id="output" class="hidden">
-        <img id="output_img" src="{% static '/img/칸딘 후추1.png' %}">
+        <div id="output_wrapper">
+            <img id="output_img" src="{% static '/img/칸딘 후추1.png' %}">
+            <div id="save_wrapper" class="save_wrapper hidden">
+                <form action="/upload/" method="post" name="upload">
+                    {% csrf_token %}
+                    <label for="title">Title</label>
+                    <input id="title" name="title" type="text" autocomplete='off' required>
+                    <label for="description">Description</label>
+                    <input id="description" name="description" type="text" autocomplete='off' required>
+                    <label for="price">Price</label>
+                    <input id="price" name="price" type="text" autocomplete='off'
+                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                           value="0">
+                    <label>Save? Sell?</label>
+                    <div class="radio">
+                        <div>
+                            <input type="radio" id="save" name="category" value="save" checked>
+                            <label title="save" for="save">Save</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="sell" name="category" value="sell">
+                            <label title="sell" for="sell">Sell</label>
+                        </div>
+                    </div>
+                    <input id="output_url" name="url" type="text" class="hidden">
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
         <div id="output_btns" class="output_btns" class="output_btns">
             <button onclick="window.location.reload()">Retry</button>
             <button onclick="download_img()">Download</button>
-            <button>Save</button>
-            <button>Sell</button>
+            <button onclick="save_sell()">Save or Sell</button>
         </div>
     </div>
 {% endblock %}

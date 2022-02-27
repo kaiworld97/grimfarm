@@ -89,6 +89,7 @@ function posting() {
             out_img.style.visibility = "visible";
             out_img.style.objectFit = "cover"
             output.appendChild(out_img);
+            document.getElementById('output_url').value = response['file_url']
         }
     });
 }
@@ -97,7 +98,7 @@ function posting1() {
     if (document.getElementById('input_img').src == no_href | document.getElementById('style_img').src == no_href) {
         return alert('Nope!')
     }
-
+     document.getElementById('output_url').value = document.getElementById('style_img').src
     document.getElementById('style_box').classList.add('fade-out-box')
     document.getElementById('img_options').classList.add('fade-out-box')
     document.getElementById('input_p').classList.add('fade-out-box')
@@ -115,6 +116,7 @@ function posting1() {
         document.getElementById('move_div').style.display = 'flex'
         setTimeout(() => {
             document.getElementById('move_div').style.display = 'none'
+            document.getElementById('output_wrapper').style.display = 'flex'
             document.getElementById('output').classList.remove('hidden')
             document.getElementById('output').classList.add('fade-in-box')
             setTimeout(() => {
@@ -347,4 +349,13 @@ function download_img(){
     down_link.download = "output_img.png";
     down_link.click();
     down_link.remove()
+}
+
+function save_sell(){
+    document.getElementById('output_btns').style.display = 'none'
+    document.getElementById('output_img').classList.add('move_left_output')
+    setTimeout(()=>{
+        document.getElementById('output_img').classList.remove('move_left_output')
+        document.getElementById('save_wrapper').classList.remove('hidden')
+    },2000)
 }
