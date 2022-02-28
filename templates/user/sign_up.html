@@ -17,12 +17,13 @@
 
 {% endblock %}
 
+
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
     <div class="wrapper-signup">
         <div class="title">Sign Up</div>
         <div class="container-signup">
-            <form method="POST" action="/sign_up/">
+            <form method="POST" action="/sign_up/" onsubmit="return check_qualification()">
                 {% csrf_token %}
                 <div class="label-info">
                     <label for="email">Email</label>
@@ -48,13 +49,26 @@
                 <div class="input-info">
                     <input name="nickname" placeholder="nickname" autocomplete="off" required>
                 </div>
+                <div class="test_image">
+                    <img src="{{ url }}">
+                </div>
+                <input value="{{ title }}" style="display: none" name="answer">
+                <div>
+                    그림에 존재하는 동물을 적어주세요
+                    <input name="user_answer" placeholder="'고양이' 혹은 '강아지'" required>
+                </div>
                 <button type="submit">Create Account</button>
             </form>
+            <p></p>
+            <div>
+                Already have an account?
+                <a href="/sign_in/">Sign In</a>
+            </div>
             {% if error %}
-                <h3>{{ error }}</h3>
+                <script>
+                    alert('{{ error }}')
+                </script>
             {% endif %}
         </div>
-
     </div>
-
 {% endblock %}

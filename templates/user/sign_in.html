@@ -4,12 +4,12 @@
 
 {#타이틀 넣는 곳#}
 {% block title %}
-    로그인
+    Sign In
 {% endblock %}
 
 {# css 파일 넣는 곳#}
 {% block css %}
-
+    <link rel="stylesheet" href="{% static '/css/sign_in.css' %}">
 {% endblock %}
 
 {#자바스크립트 파일 넣는 곳#}
@@ -19,14 +19,33 @@
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
-    <h1>로그인</h1>
-    {% if error %}
-        <h3>{{ error }}</h3>
-    {% endif %}
-    <form method="POST" action="/sign_in/">
-        {% csrf_token %}
-        <input name="username">
-        <input type="password" name="password"/>
-        <button type="submit">로그인</button>
-    </form>
+    <div class="wrapper-signin">
+        <div class="title">
+            <h1>Sign In</h1>
+        </div>
+        <div id="error-msg">
+            {% if error %}
+                <h3>{{ error }}</h3>
+            {% endif %}
+        </div>
+        <div class="input-box">
+            <form method="POST" action="/sign_in/">
+            {% csrf_token %}
+            <div class="input-info">
+                <input name="username" placeholder="Email">
+            </div>
+            <div class="input-info">
+                <input type="password" name="password" placeholder="Password">
+            </div>
+            <button type="submit">Sign In</button>
+            <p></p>
+            <div>
+                Not a member?
+                <a href="/sign_up/">Sign Up</a>
+            </div>
+        </form>
+        </div>
+
+    </div>
+
 {% endblock %}
