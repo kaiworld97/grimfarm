@@ -1,9 +1,15 @@
 const no_href = window.location.href + 1
+let input_type = 'file'
+let style_type = 'url'
+let input_now = ''
+let style_now = ''
 
 function loadFile(input) {
     let file = input.files[0];
     let file_img = document.getElementById("input_img");
     let empty_img = document.getElementById('empty_img')
+    input_type = 'file'
+    input_now = file
     file_img.src = URL.createObjectURL(file);
     if (empty_img.style.display != 'none') {
         empty_img.classList.add('img_rotate3d')
@@ -24,6 +30,8 @@ function click_style(input) {
     let style_img = document.getElementById('style_img')
     let empty_style = document.getElementById('empty_style')
     style_img.src = input.src
+    style_type = 'url'
+    style_now = style_img.src
     if (empty_style.style.display != 'none') {
         empty_style.classList.add('img_rotate3d')
         setTimeout(() => {
@@ -47,6 +55,15 @@ function img_style_change() {
     if (file_img2 == no_href | style_img2 == no_href) {
         return alert('Nope!')
     }
+    let ex_input_type = input_type
+    let ex_style_type = style_type
+    let ex_input_now = input_now
+    let ex_style_now = style_now
+    input_type = ex_style_type
+    input_now = ex_style_now
+    style_type = ex_input_type
+    style_now = ex_input_now
+
 
     file_img.classList.add('move_right')
     style_img.classList.add('move_left')
@@ -59,46 +76,68 @@ function img_style_change() {
     }, 1200)
 }
 
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 function posting() {
-    let file = $('#select_file')[0].files[0]
-    var num = $('input[name=style]:checked').val();
-    let file_id = document.getElementById('select_file').value.split('\\')[2].split('.')[0]
-    let key = String(new Date().getTime()) + file_id
+    // let username = getCookie("cookie_name")
+    let username = 'hi'
+    let key = String(new Date().getTime()) + username
     let form_data = new FormData()
 
+    console.log(input_type)
+    console.log(input_now)
+    console.log(style_type)
+    console.log(style_now)
+    console.log(key)
 
-    form_data.append("img", file)
-    form_data.append("num", num)
+
+    form_data.append("input_type", input_type)
+    form_data.append("style_type", style_type)
+    form_data.append("input_now", input_now)
+    form_data.append("style_now", style_now)
     form_data.append("key", key)
 
-    $.ajax({
-        type: "POST",
-        url: 'http://127.0.0.1:5000/api/v1/nsts/',
-        data: form_data,
-        cache: false,
-        contentType: false,
-        processData: false,
-        enctype: 'multipart/form-data',
-        success: function (response) {
-            console.log(response['file_url'])
-            let output = document.getElementById('output')
-            let out_img = document.createElement("img");
-            out_img.src = response['file_url']
-            out_img.style.width = "100%";
-            out_img.style.height = "100%";
-            out_img.style.visibility = "visible";
-            out_img.style.objectFit = "cover"
-            output.appendChild(out_img);
-            document.getElementById('output_url').value = response['file_url']
-        }
-    });
+    // $.ajax({
+    //     type: "POST",
+    //     url: 'http://127.0.0.1:5000/api/v1/nsts/',
+    //     data: form_data,
+    //     cache: false,
+    //     contentType: false,
+    //     processData: false,
+    //     enctype: 'multipart/form-data',
+    //     success: function (response) {
+    //         console.log(response['file_url'])
+    //         let output = document.getElementById('output')
+    //         let out_img = document.createElement("img");
+    //         out_img.src = response['file_url']
+    //         out_img.style.width = "100%";
+    //         out_img.style.height = "100%";
+    //         out_img.style.visibility = "visible";
+    //         out_img.style.objectFit = "cover"
+    //         output.appendChild(out_img);
+    //         document.getElementById('output_url').value = response['file_url']
+    //     }
+    // });
 }
 
 function posting1() {
     if (document.getElementById('input_img').src == no_href | document.getElementById('style_img').src == no_href) {
         return alert('Nope!')
     }
-     document.getElementById('output_url').value = document.getElementById('style_img').src
+    document.getElementById('output_url').value = document.getElementById('style_img').src
     document.getElementById('style_box').classList.add('fade-out-box')
     document.getElementById('img_options').classList.add('fade-out-box')
     document.getElementById('input_p').classList.add('fade-out-box')
@@ -134,6 +173,9 @@ function url_img() {
     }
     let input_img = document.getElementById('input_img')
     input_img.src = img_src
+    input_now = input_img.src
+    input_type = 'url'
+
     let empty_img = document.getElementById('empty_img')
     if (empty_img.style.display != 'none') {
         empty_img.classList.add('img_rotate3d')
@@ -160,6 +202,9 @@ function url_style() {
     let style_img = document.getElementById('style_img')
     let empty_style = document.getElementById('empty_style')
     style_img.src = style_src
+    style_now = style_img.src
+    style_type = 'url'
+
     if (empty_style.style.display != 'none') {
         empty_style.classList.add('img_rotate3d')
         setTimeout(() => {
@@ -317,6 +362,13 @@ function go_image() {
     document.getElementById('input_img').src = image
     document.getElementById('input_img_wrapper').style.display = 'flex'
     document.getElementById('empty_img').style.display = 'none'
+    fetch(image)
+        .then(res => res.blob())
+        .then(blob => {
+            const file = new File([blob], 'photo.png', blob)
+            input_now = file
+            input_type = 'file'
+        })
     go_upload()
 }
 
@@ -325,7 +377,15 @@ function go_style() {
     document.getElementById('style_img').src = image
     document.getElementById('style_img_wrapper').style.display = 'flex'
     document.getElementById('empty_style').style.display = 'none'
+    fetch(image)
+        .then(res => res.blob())
+        .then(blob => {
+            const file = new File([blob], 'photo.png', blob)
+            style_now = file
+            style_type = 'file'
+        })
     go_upload()
+
 }
 
 const jsBack = document.getElementById('jsBack')
@@ -343,7 +403,7 @@ if (jsStyle) {
     jsStyle.addEventListener('click', go_style)
 }
 
-function download_img(){
+function download_img() {
     const down_link = document.createElement("a");
     down_link.href = document.getElementById('output_img').src
     down_link.download = "output_img.png";
@@ -351,11 +411,11 @@ function download_img(){
     down_link.remove()
 }
 
-function save_sell(){
+function save_sell() {
     document.getElementById('output_btns').style.display = 'none'
     document.getElementById('output_img').classList.add('move_left_output')
-    setTimeout(()=>{
+    setTimeout(() => {
         document.getElementById('output_img').classList.remove('move_left_output')
         document.getElementById('save_wrapper').classList.remove('hidden')
-    },2000)
+    }, 2000)
 }

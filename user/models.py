@@ -13,5 +13,3 @@ class UserModel(AbstractUser):
     point = models.IntegerField(default=0)
 
 
-
-
