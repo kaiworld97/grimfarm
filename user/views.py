@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from user.models import UserModel
 from django.contrib import auth
-from PIL import Image
 import re
 
 
