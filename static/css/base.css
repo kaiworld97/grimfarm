@@ -6,15 +6,34 @@ a {
     text-decoration: none;
     color: black;
 }
+.base_content button{
+    all:unset;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    color: white;
+    background-color: #8685EF;
+    border-radius: 24px;
+    padding: 1%;
+    cursor: pointer;
+}
+.base_content button:hover {
+    transform: scale(0.95);
+}
+.flex{
+    display: flex;
+}
 
 :focus-visible {
     outline: 0;
 }
-
+.hidden{
+    display: none;
+}
 .base_content {
     text-align: center;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .material-icons {
@@ -41,6 +60,7 @@ a {
     /* Support for IE. */
     font-feature-settings: 'liga';
     color: #9f9f9f;
+    cursor: pointer;
 }
 
 nav {
@@ -73,13 +93,12 @@ nav .logo {
     padding-right: 20%;
     display: flex;
     align-items: center;
-
 }
 
 nav input {
     border: 0;
     padding-left: 5px;
-    width: -webkit-fill-available;
+    width: 580px;
 }
 
 .input_wrapper {
@@ -98,6 +117,7 @@ nav .icons {
     width: 200px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 nav .icons i {
@@ -105,3 +125,50 @@ nav .icons i {
     padding: 0 20px;
 
 }
+
+/*헤더 드랍 다운 메뉴*/
+
+.dropbtn {
+    background-color: rgb(255, 255, 255);
+    color: white;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: flex;
+    height: 72px;
+    align-items: center;
+
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: rgb(255, 255, 255);
+}
+

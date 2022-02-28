@@ -4,7 +4,7 @@
 
 {#타이틀 넣는 곳#}
 {% block title %}
-
+    buy
 {% endblock %}
 
 {# css 파일 넣는 곳#}
@@ -19,6 +19,10 @@
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
-
+    <img src="https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EC%B9%B8%EB%94%98%20%ED%9B%84%EC%B6%941.png">
+    <form action="/buy/1" method="post">
+    {% csrf_token %}
+    <button type="submit">구매하기</button>
+    </form>
 {% endblock %}
 

@@ -1,0 +1,29 @@
+/*그림판매정보박스*/
+
+div#img_detail_box {
+    display: flex;
+    flex-direction: row;
+    width: 70vw;
+    border: 1px darkgray solid;
+    border-radius: 10px;
+    margin-top: 7vh;
+}
+div#selleing_img {
+    width: 30vw;
+    height: 35vw;
+    background-color: aliceblue;
+}
+div#img_info_area {
+    text-align: left;
+    margin-left: 2vw;
+}
+p#img_title {
+    font-size: 2rem;
+    font-weight: bolder;
+}
+p#img_desc {
+    width: 33vw;
+    margin-left: 1vw;
+    color: #565656;
+    font-size: 0.9rem;
+}

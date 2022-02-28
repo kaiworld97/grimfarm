@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 # Create your views here.
@@ -14,3 +14,10 @@ def seller(request, pk):
 
 def detail(request, pk):
     return render(request, 'market/detail.html')
+
+
+def buy(request, pk):
+    if request.method == 'GET':
+        return render(request, 'market/buy.html')
+    elif request.method == 'POST':
+        return redirect('/')
