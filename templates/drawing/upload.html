@@ -14,49 +14,115 @@
 
 {#자바스크립트 파일 넣는 곳#}
 {% block js %}
-    <script>
-        function posting() {
-            let file = $('#select_file')[0].files[0]
-            let num = $('#select_num').val()
-            let key = $('#select_key').val()
-            let form_data = new FormData()
-
-            form_data.append("img", file)
-            form_data.append("num", num)
-            form_data.append("key", key)
-
-            $.ajax({
-                type: "POST",
-                url: 'http://127.0.0.1:5000/api/v1/nsts/',
-                data: form_data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                enctype: 'multipart/form-data',
-                success: function (response) {
-                    console.log(response['file_url'])
-                    let output = document.getElementById('output')
-                    let out_img = document.createElement("img");
-                    out_img.src = response['file_url']
-                    out_img.style.width = "100%";
-                    out_img.style.height = "100%";
-                    out_img.style.visibility = "visible";
-                    out_img.style.objectFit = "cover"
-                    output.appendChild(out_img);
-                }
-            });
-        }
-    </script>
+    <script type="text/javascript" src="{% static '/js/upload.js' %}"></script>
 {% endblock %}
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
-    <div class="input_container">
-    <input type="file" id="select_file">
-    <input type="number" id="select_num">
-    <input type="text" id="select_key">
-    <button onclick="posting()">업로드</button>
+    <div id="upload_container">
+        <div class="img_container">
+            <div class="input_container">
+                <p id="input_p">Image</p>
+                <div id="empty_img" class="empty_div">X</div>
+                <div id="input_img_wrapper" class="input_img_wrapper hidden">
+                    <img id="input_img" src="1">
+                </div>
+            </div>
+            <div class="style_container">
+                <p id="style_p">Style</p>
+                <div id="empty_style" class="empty_div">X</div>
+                <div id="style_img_wrapper" class="style_img_wrapper hidden">
+                    <img id="style_img" src="1">
+                </div>
+            </div>
+        </div>
+        <div id="img_options">
+            <label class="label_select" for="select_file">
+                Image from local
+            </label>
+            <input type="file" id="select_file" class="hidden" accept="image/gif,image/jpeg,image/png"
+                   onchange="loadFile(this)">
+            <button onclick="url_img()">Image from url</button>
+            <button onclick="go_drawing()">Image drawing</button>
+            <button onclick="img_style_change()">Image style change</button>
+            <button onclick="url_style()">Style from url</button>
+            <button onclick="posting1()">Create new thing</button>
+        </div>
+        <div id="style_box">
+            {% for style in styles %}
+                <div class="select_box">
+                    <img src="{{ style.url }}" onclick="click_style(this)">
+                    <p>{{ style.title }}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <div id="output"></div>
+    <div id="drawing" class="hidden">
+        <canvas id="jsCanvas" class="canvas"></canvas>
+        <div class="controls">
+            <div class="controls_range">
+                <input type="range" id="jsRange" min="0.1" max="20.0" value="10" step="0.1">
+            </div>
+            <div class="controls_colors" id="jsColors">
+                <div class="controls_color jsColor" style="background-color: #2c2c2c;"></div>
+                <div class="controls_color jsColor" style="background-color: white;"></div>
+                <div class="controls_color jsColor" style="background-color: #FF3B30;"></div>
+                <div class="controls_color jsColor" style="background-color: #ff9500;"></div>
+                <div class="controls_color jsColor" style="background-color: #FFCC00;"></div>
+                <div class="controls_color jsColor" style="background-color: #4CD963;"></div>
+                <div class="controls_color jsColor" style="background-color: #5AC8FA;"></div>
+                <div class="controls_color jsColor" style="background-color: #0579FF;"></div>
+                <div class="controls_color jsColor" style="background-color: #5856D6;"></div>
+            </div>
+            <div class="controls_btns">
+                <button id="jsClear">Clear</button>
+                <button id="jsMode">Fill</button>
+                <button id="jsSave">Save</button>
+                <button id="jsImage">To image</button>
+                <button id="jsStyle">To style</button>
+                <button id="jsBack">Back</button>
+            </div>
+        </div>
+    </div>
+    <div id="move_div" class="hidden">
+        <img id="move1" class="move" src="">
+        <img id="move2" class="move" src="">
+    </div>
+    <div id="output" class="hidden">
+        <div id="output_wrapper">
+            <img id="output_img" src="{% static '/img/칸딘 후추1.png' %}">
+            <div id="save_wrapper" class="save_wrapper hidden">
+                <form action="/upload/" method="post" name="upload">
+                    {% csrf_token %}
+                    <label for="title">Title</label>
+                    <input id="title" name="title" type="text" autocomplete='off' required>
+                    <label for="description">Description</label>
+                    <input id="description" name="description" type="text" autocomplete='off' required>
+                    <label for="price">Price</label>
+                    <input id="price" name="price" type="text" autocomplete='off'
+                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                           value="0">
+                    <label>Save? Sell?</label>
+                    <div class="radio">
+                        <div>
+                            <input type="radio" id="save" name="category" value="save" checked>
+                            <label title="save" for="save">Save</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="sell" name="category" value="sell">
+                            <label title="sell" for="sell">Sell</label>
+                        </div>
+                    </div>
+                    <input id="output_url" name="url" type="text" class="hidden">
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+        <div id="output_btns" class="output_btns" class="output_btns">
+            <button onclick="window.location.reload()">Retry</button>
+            <button onclick="download_img()">Download</button>
+            <button onclick="save_sell()">Save or Sell</button>
+        </div>
+    </div>
 {% endblock %}
 

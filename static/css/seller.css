@@ -1,0 +1,131 @@
+#grimwrap {
+    display: flex;
+	flex-direction: row;
+    justify-content: center;
+}
+
+#imgbox{
+	margin-right: 20px;
+	border: #9f9f9f 0.5px solid;
+    width: 20vw;
+    height: 25vw;
+    border-radius: 10px;
+    overflow: hidden;
+}
+img.main_img {
+    width: 21vw;
+    height: 21vw;
+    border-radius: 10px;
+    margin-left: -10px;
+}
+div#imginfo {
+    display: flex;
+    font-size: 0.8rem;
+    justify-content: space-between;
+    padding: 0 10px 0 10px;
+}
+p.tab_title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+div#imginfo p {
+    margin: 0;
+}
+div#info_left {
+    text-align: left;
+}
+div#info_right {
+    text-align: right;
+}
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.tabs li{
+  display: inline-block;
+	/*background: rgba(213, 236, 255, 0.7);*/
+	color: #b2b2b2;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current{
+	/*background: rgba(213, 236, 255, 0.7);*/
+	color: #222;
+    font-weight: 900;
+}
+
+.tab-content{
+  display: none;
+	/*background: rgba(213, 236, 255, 0.7);*/
+	padding: 12px;
+}
+
+.tab-content.current{
+	display: inherit;
+}
+
+.base_content {
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+#background_profile {
+    width: 100vw;
+    height: 20vh;
+	background-color: #dadada;
+}
+
+div#pic_profile {
+    width: 7vw;
+    height: 7vw;
+    background-color: #fcecff;
+    border-radius: 50%;
+    margin: auto;
+    border: white 3px solid;
+    position: absolute;
+    margin-top: 14vh;
+    margin-left: 46vw;
+}
+
+div#info_profile {
+    padding-top: 6vh;
+}
+
+p#nickname {
+    font-size: 2.5rem;
+    font-weight: 900;
+	margin-bottom: 0px;
+}
+div#info_trading {
+    justify-content: center;
+    display: flex;
+}
+.detail_trading {
+    width: 8vw;
+}
+.detail_trading span {
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+div#description {
+    width: 25vw;
+    margin: auto;
+    margin-top: 3vh;
+    color: #767676;
+}
+.tap_container {
+    margin-top: 10vh;
+}
+div#info_trading {
+    border: 1px solid #dadada;
+    width: 30vw;
+    margin: auto;
+    margin-top: 40px;
+    border-radius: 5px;
+    padding-top: 10px;
+}

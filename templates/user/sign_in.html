@@ -23,7 +23,7 @@
     {% if error %}
         <h3>{{ error }}</h3>
     {% endif %}
-    <form method="POST">
+    <form method="POST" action="/sign_in/">
         {% csrf_token %}
         <input name="username">
         <input type="password" name="password"/>

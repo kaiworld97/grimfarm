@@ -9,16 +9,37 @@ detail
 
 {# css 파일 넣는 곳#}
 {% block css %}
-
+<link rel="stylesheet" href="{% static '/css/detail.css' %}">
 {% endblock %}
 
 {#자바스크립트 파일 넣는 곳#}
 {% block js %}
-
+<script  type="text/javascript" src="{% static '/js/detail.js' %}"></script>
 {% endblock %}
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
+<div id="img_detail_box">
+    <div id="selleing_img">
+        img 들어가는곳
+    </div>
+    <div id="img_info_area">
 
+            <p id="img_title">TITLE</p>
+            <p class="img_detail">Owned by nickname</p>
+            <p class="img_detail">Created by author</p>
+            <p class="img_price">Price : buy_price</p>
+            <p class="img_detail">Description</p>
+            <p id="img_desc">지훈님네 후추는 귀엽습니다.. 광민님의 손길을 거쳐 더 귀엽게 되었어요... 나만 고양이 없어....</p>
+            <div id="price_chart">
+                <p class="img_detail">Price Chart</p>
+                300 (buyer, date), 320 (buyer, date), 290 (buyer, date)
+        </div>
+    </div>
+</div>
+
+<div id="img_collection">
+
+</div>
 {% endblock %}
 

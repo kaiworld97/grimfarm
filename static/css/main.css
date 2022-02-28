@@ -66,19 +66,8 @@ span{
 }
 
 .start_btn{
-    all: unset;
-    width: 150px;
-    height: 50px;
-    border-radius: 24px;
-    color: white;
-    background-color: #FFDFCA;
     transition: 0.2s;
     font-size: 20px;
     font-weight: bold;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
     margin-top: 3%;
-}
-
-.start_btn:hover {
-    transform: scale(0.95);
 }
