@@ -4,25 +4,92 @@
 
 {#타이틀 넣는 곳#}
 {% block title %}
-    buy
+buy
 {% endblock %}
 
 {# css 파일 넣는 곳#}
 {% block css %}
-    {#        <link rel="stylesheet" href="{% static '/css/해당앱.css' %}">#}
+<link rel="stylesheet" href="{% static '/css/buy.css' %}">
 {% endblock %}
 
 {#자바스크립트 파일 넣는 곳#}
 {% block js %}
-    {#<script type="text/javascript" src="{% static '/js/해당앱.js' %}"></script>#}
+<script  type="text/javascript" src="{% static '/js/buy.js' %}"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{#    가격변동차트#}
+<script  type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Price'],
+            ['1',  290],
+            ['2',  300],
+            ['3', 320]
+        ]);
+        var options = {
+          title: 'Price Chart'
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+</script>
 {% endblock %}
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
-    <img src="https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EC%B9%B8%EB%94%98%20%ED%9B%84%EC%B6%941.png">
-    <form action="/buy/1" method="post">
-    {% csrf_token %}
-    <button type="submit">구매하기</button>
-    </form>
+<div id="img_detail_box">
+    <div id="selleing_img">
+        img drawing_id :1
+    </div>
+    <div id="img_info_area">
+
+            <p id="img_title">TITLE</p>
+{#            <button id="btn1" onclick="open_modal();">settings</button>#}
+            <p class="img_detail">Owned by nickname: {{ drawing.owner_id }}</p>
+            <p class="img_detail">Created by author: {{ drawing.author_id }}</p>
+            <p class="img_price">Price : {{ drawing.buy_price }}</p>
+            <p class="img_detail">Description</p>
+            <p id="img_desc">{{ drawing.description }}</p>
+            <div id="price_chart">
+                <p class="img_detail">Price Chart</p>
+
+                {% for p in market %}
+                    <p class="prices">{{ p.sell_price }}</p>
+                {% endfor %}
+
+                <div id="chart_div"></div>
+
+
+        </div>
+        <p>Sales Status: {{ drawing.category }}</p>
+            {% if drawing.category == 'on' %}
+                <button onclick="open_modal()">Buy Now</button>
+            {% endif %}
+
+    </div>
+</div>
+
+<div id="img_collection">
+
+</div>
+
+    <dialog id="buy_now" class="modal modal_box">
+
+        <button onclick="close_modal()">&times;</button>
+        <form method="POST">
+            {% csrf_token %}
+            <p>img: {{ drawing.img }}</p>
+            <p>{{ drawing.title }}</p>
+            <p>Price: {{ drawing.buy_price }}</p>
+            <p>My Point: </p>
+            <button type="submit" >구입하기</button>
+        </form>
+    </dialog>
+
+
+
 {% endblock %}
 
