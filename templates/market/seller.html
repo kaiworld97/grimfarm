@@ -31,6 +31,7 @@ seller
     <div id="profile_wrap">
         <div id="info_profile">
             <p id="nickname"> JIHOON </p>
+            <button id="btn1" onclick="open_modal();">settings</button>
             <p id="creator">Created by  KWANGMIN </p>
             <div id="info_trading">
                 <div class="detail_trading">
@@ -55,6 +56,22 @@ seller
             </div>
         </div>
 </div>
+
+    <dialog id="info_edit" class="modal modal_box">
+
+        <button onclick="close_modal()">&times;</button>
+        <form method="POST">
+        {% csrf_token %}
+{#        <input name="title" value="{{ drawing.title }}">#}
+
+            <input name="desc" value="{{ drawing.description }}">
+
+            <button type="submit" >수정하기</button>
+        </form>
+    </dialog>
+
+
+
 
    <div class="tap_container">
 <!-- 탭 메뉴 상단 시작 -->
