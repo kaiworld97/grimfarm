@@ -97,18 +97,22 @@ function posting() {
     let key = String(new Date().getTime()) + username
     let form_data = new FormData()
 
-    console.log(input_type)
-    console.log(input_now)
-    console.log(style_type)
-    console.log(style_now)
-    console.log(key)
 
 
-    form_data.append("input_type", input_type)
-    form_data.append("style_type", style_type)
-    form_data.append("input_now", input_now)
-    form_data.append("style_now", style_now)
+    if(input_type == "url"){
+        form_data.append("input_url", input_now)
+    }else{
+        form_data.append("img", input_now)
+    }
+    if(style_type == "url"){
+        form_data.append("style_url", style_now)
+    }else{
+        form_data.append("style_img", style_now)
+    }
     form_data.append("key", key)
+
+    console.log(input_type)
+    console.log(style_type)
 
     // $.ajax({
     //     type: "POST",
