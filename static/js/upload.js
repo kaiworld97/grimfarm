@@ -100,7 +100,7 @@ function posting() {
 
 
     if(input_type == "url"){
-        form_data.append("input_url", input_now)
+        form_data.append("img_url", input_now)
     }else{
         form_data.append("img", input_now)
     }
@@ -111,30 +111,30 @@ function posting() {
     }
     form_data.append("key", key)
 
-    console.log(input_type)
-    console.log(style_type)
+    console.log(input_now)
+    console.log(style_now)
 
-    // $.ajax({
-    //     type: "POST",
-    //     url: 'http://127.0.0.1:5000/api/v1/nsts/',
-    //     data: form_data,
-    //     cache: false,
-    //     contentType: false,
-    //     processData: false,
-    //     enctype: 'multipart/form-data',
-    //     success: function (response) {
-    //         console.log(response['file_url'])
-    //         let output = document.getElementById('output')
-    //         let out_img = document.createElement("img");
-    //         out_img.src = response['file_url']
-    //         out_img.style.width = "100%";
-    //         out_img.style.height = "100%";
-    //         out_img.style.visibility = "visible";
-    //         out_img.style.objectFit = "cover"
-    //         output.appendChild(out_img);
-    //         document.getElementById('output_url').value = response['file_url']
-    //     }
-    // });
+    $.ajax({
+        type: "POST",
+        url: 'http://127.0.0.1:5000/api/v1/nsts/',
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        enctype: 'multipart/form-data',
+        success: function (response) {
+            console.log(response['file_url'])
+            let output = document.getElementById('output')
+            let out_img = document.createElement("img");
+            out_img.src = response['file_url']
+            out_img.style.width = "100%";
+            out_img.style.height = "100%";
+            out_img.style.visibility = "visible";
+            out_img.style.objectFit = "cover"
+            output.appendChild(out_img);
+            document.getElementById('output_url').value = response['file_url']
+        }
+    });
 }
 
 function posting1() {
