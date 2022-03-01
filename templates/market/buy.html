@@ -42,11 +42,11 @@ buy
 {% block content %}
 <div id="img_detail_box">
     <div id="selleing_img">
-        img drawing_id :1
+        <img src="{{ drawing.img }}">
     </div>
     <div id="img_info_area">
 
-            <p id="img_title">TITLE</p>
+            <p id="img_title">{{ drawing.title }}</p>
 {#            <button id="btn1" onclick="open_modal();">settings</button>#}
             <p class="img_detail">Owned by nickname: {{ drawing.owner_id }}</p>
             <p class="img_detail">Created by author: {{ drawing.author_id }}</p>
@@ -65,7 +65,7 @@ buy
 
         </div>
         <p>Sales Status: {{ drawing.category }}</p>
-            {% if drawing.category == 'on' %}
+            {% if drawing.category == 'save' %}
                 <button onclick="open_modal()">Buy Now</button>
             {% endif %}
 

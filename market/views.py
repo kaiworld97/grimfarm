@@ -53,11 +53,11 @@ def detail(request, pk):
     return render(request, 'market/detail.html', {'drawing':drawing, 'market':market, 'price_list':price_list})
 
 
-def buy(request, drawing_pk):
-    drawing = DrawingModel.objects.get(pk=pk)
-    market = MarketModel.objects.filter(drawing_id=pk)
-    return render(request, 'market/buy.html', {'drawing':drawing, 'market':market})
-    # if request.method == 'GET':
+def buy(request, pk):
+    if request.method == 'GET':
+        drawing = DrawingModel.objects.get(pk=pk)
+        market = MarketModel.objects.filter(drawing_id=pk)
+        return render(request, 'market/buy.html', {'drawing':drawing, 'market':market})
     #     return render(request, 'market/buy.html', {'drawing':drawing})
     # elif request.method == 'POST':
     #     return redirect('/')
