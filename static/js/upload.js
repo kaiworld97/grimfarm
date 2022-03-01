@@ -93,7 +93,7 @@ function getCookie(name) {
 }
 function posting() {
     // let username = getCookie("cookie_name")
-    let username = 'hi'
+    let username = 'hi1'
     let key = String(new Date().getTime()) + username
     let form_data = new FormData()
 
@@ -123,15 +123,7 @@ function posting() {
         processData: false,
         enctype: 'multipart/form-data',
         success: function (response) {
-            console.log(response['file_url'])
-            let output = document.getElementById('output')
-            let out_img = document.createElement("img");
-            out_img.src = response['file_url']
-            out_img.style.width = "100%";
-            out_img.style.height = "100%";
-            out_img.style.visibility = "visible";
-            out_img.style.objectFit = "cover"
-            output.appendChild(out_img);
+            document.getElementById('output_img').src = response['file_url']
             document.getElementById('output_url').value = response['file_url']
         }
     });
@@ -141,7 +133,6 @@ function posting1() {
     if (document.getElementById('input_img').src == no_href | document.getElementById('style_img').src == no_href) {
         return alert('Nope!')
     }
-    document.getElementById('output_url').value = document.getElementById('style_img').src
     document.getElementById('style_box').classList.add('fade-out-box')
     document.getElementById('img_options').classList.add('fade-out-box')
     document.getElementById('input_p').classList.add('fade-out-box')

@@ -1,14 +1,22 @@
 from django.shortcuts import render, redirect
-from .models import DrawingModel ,StyleModel
+from .models import DrawingModel, StyleModel
+from user.models import UserModel
+
 
 def upload(request):
     if request.method == 'GET':
         styles = StyleModel.objects.all()
-        return render(request, 'drawing/upload.html', {'styles':styles})
+        return render(request, 'drawing/upload.html', {'styles': styles})
     elif request.method == 'POST':
-        print(request.POST.get('title'))
-        print(request.POST.get('description'))
+        drawing_model = DrawingModel()
+        drawing_model.title = request.POST.get('title')
+        drawing_model.description = request.POST.get('description')
+        drawing_model.img = request.POST.get('url')
+        drawing_model.buy_price = request.POST.get('price')
+        drawing_model.category = request.POST.get('category')
+        drawing_model.owner = UserModel.objects.get(username=request.user)
+        drawing_model.author = UserModel.objects.get(username=request.user)
+        drawing_model.save()
+        url_pk = DrawingModel.objects.filter(owner=UserModel.objects.get(username=request.user), title=request.POST.get('title'), )[0].id
         print(request.POST.get('url'))
-        print(request.POST.get('price'))
-        print(request.POST.get('category'))
-        return redirect('/')
+        return redirect(f'/detail/{url_pk}')

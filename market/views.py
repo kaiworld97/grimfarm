@@ -36,7 +36,7 @@ def detail(request, pk):
 
     print(price_list)
 
-    owner = UserModel.objects.get(pk=pk)
+    owner = drawing.owner
     if request.method == "POST":
         drawing.description = request.POST['desc']
         drawing.buy_price = request.POST['price']
