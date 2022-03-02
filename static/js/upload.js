@@ -76,27 +76,12 @@ function img_style_change() {
     }, 1200)
 }
 
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
 function posting() {
-    let username = getCookie("nickname")
-    if (username == null | username == ''){
+    const username = document.getElementById('user_nickname')
+    if (username == null){
         return alert('Please Sign in')
     }
-    let key = String(new Date().getTime()) + username
+    let key = String(new Date().getTime()) + username.innerText.split(' ')[0]
     let form_data = new FormData()
 
 
@@ -112,7 +97,7 @@ function posting() {
         form_data.append("style_img", style_now)
     }
     form_data.append("key", key)
-
+    console.log(username.innerText.split(' ')[0])
     console.log(input_now)
     console.log(style_now)
 
@@ -136,8 +121,8 @@ function posting1() {
     if (document.getElementById('input_img').src == no_href | document.getElementById('style_img').src == no_href) {
         return alert('Nope!')
     }
-    let username = getCookie("nickname")
-    if (username == null | username == ''){
+    const username = document.getElementById('user_nickname')
+    if (username == null){
         return
     }
     document.getElementById('style_box').classList.add('fade-out-box')
@@ -163,9 +148,9 @@ function posting1() {
             setTimeout(() => {
                 document.getElementById('output_btns').style.display = 'flex'
                 document.getElementById('output_btns').classList.add('fade-in-box1')
-            }, 3000)
-        }, 2000)
-    }, 1200)
+            }, 5000)
+        }, 5000)
+    }, 2800)
 }
 
 function url_img() {

@@ -48,7 +48,6 @@
 
 #content {
     z-index: 3;
-    cursor: pointer;
 }
 
 #content:hover {
@@ -62,6 +61,7 @@
     height: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    cursor: pointer;
 }
 
 .post {
@@ -69,12 +69,12 @@
     justify-content: space-between;
     font-weight: bold;
     font-size: 14px;
-
 }
 
 .post_left {
     display: flex;
     margin: 1.7% 1% 1% 1%;
+    cursor: pointer;
 }
 
 .post_left p {
@@ -99,4 +99,12 @@
     width: 40px;
     height: 40px;
     border-radius: 20px;
+}
+
+.check{
+    margin-top: 2%;
+    text-align: left;
+    color:rgba(0, 0, 0, 0.54);
+    font-size: 20px;
+
 }
