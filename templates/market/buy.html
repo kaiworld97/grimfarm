@@ -16,56 +16,60 @@ buy
 {% block js %}
 <script  type="text/javascript" src="{% static '/js/buy.js' %}"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{#<script type="text/javascript" src="https://www.google.com/jsapi"></script>#}
 {#    가격변동차트#}
-<script  type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Date', 'Price'],
-            ['1',  290],
-            ['2',  300],
-            ['3', 320]
-        ]);
-        var options = {
-          title: 'Price Chart'
-        };
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-</script>
+{#<script  type="text/javascript">#}
+{#      google.load("visualization", "1", {packages:["corechart"]});#}
+{#      google.setOnLoadCallback(drawChart);#}
+{#      function drawChart() {#}
+{##}
+{#        var data = google.visualization.arrayToDataTable([#}
+{#          ['Date', 'Price'],#}
+{#            ['1',  290],#}
+{#            ['2',  300],#}
+{#            ['3', 320]#}
+{#        ]);#}
+{#        var options = {#}
+{#          title: 'Price Chart'#}
+{#        };#}
+{#        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));#}
+{#        chart.draw(data, options);#}
+{#      }#}
+{#</script>#}
 {% endblock %}
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
 <div id="img_detail_box">
     <div id="selleing_img">
-        <img src="{{ drawing.img }}">
-    </div>
-    <div id="img_info_area">
+        <img class="sales_img" src="{{ drawing_img.img }}">
 
-            <p id="img_title">{{ drawing.title }}</p>
-{#            <button id="btn1" onclick="open_modal();">settings</button>#}
-            <p class="img_detail">Owned by nickname: {{ drawing.owner_id }}</p>
-            <p class="img_detail">Created by author: {{ drawing.author_id }}</p>
-            <p class="img_price">Price : {{ drawing.buy_price }}</p>
+    </div>
+
+    <div id="img_info_area">
+            <p id="img_title">{{ drawing_img.title }}</p>
+            <p class="img_detail">Owned by {{ owner.nickname }}</p>
+            <p class="img_detail">Created by {{ drawing.author.nickname }}</p>
+            <p class="img_price">Price : {{ drawing_img.buy_price }}</p>
+
             <p class="img_detail">Description</p>
-            <p id="img_desc">{{ drawing.description }}</p>
+            <p id="img_desc">{{ drawing_img.description }}</p>
+
             <div id="price_chart">
                 <p class="img_detail">Price Chart</p>
+            {{ price_list|safe }}
 
-                {% for p in market %}
-                    <p class="prices">{{ p.sell_price }}</p>
-                {% endfor %}
-
-                <div id="chart_div"></div>
+                {% if price_list|length > 1 %}
+                    <div id="chart_div"></div>
+                {% else %}
+                    <p style="color: red">거래내역이 없습니다</p>
+                {% endif %}
 
 
         </div>
-        <p>Sales Status: {{ drawing.category }}</p>
-            {% if drawing.category == 'save' %}
+        <p>Sales Status: {{ drawing_img.category }}</p>
+            {% if drawing_img.category == 'on' %}
+
                 <button onclick="open_modal()">Buy Now</button>
             {% endif %}
 
@@ -76,19 +80,41 @@ buy
 
 </div>
 
+{#    구매하기 팝업#}
     <dialog id="buy_now" class="modal modal_box">
 
         <button onclick="close_modal()">&times;</button>
         <form method="POST">
             {% csrf_token %}
-            <p>img: {{ drawing.img }}</p>
-            <p>{{ drawing.title }}</p>
-            <p>Price: {{ drawing.buy_price }}</p>
-            <p>My Point: </p>
+            <p>{{ drawing_img.title  }}</p>
+             <p>Price: {{ drawing_img.buy_price }}</p>
+            <p>My Point: {{ user.point  }}</p>
+
+{#            <p>거래후잔여 Point: {{ user.point |add: "2" }}</p>#}
             <button type="submit" >구입하기</button>
         </form>
     </dialog>
 
+
+{#    가격변동차트#}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script  type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      var prices = {{ price_list|safe }}
+
+          console.log(typeof(prices))
+      function drawChart() {
+       var data = google.visualization.arrayToDataTable(
+            prices
+            );
+        var options = {
+          title: 'Price Chart'
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+</script>
 
 
 {% endblock %}
