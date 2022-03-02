@@ -92,8 +92,10 @@ function getCookie(name) {
     return cookieValue;
 }
 function posting() {
-    // let username = getCookie("cookie_name")
-    let username = 'hi1'
+    let username = getCookie("nickname")
+    if (username == null | username == ''){
+        return alert('Please Sign in')
+    }
     let key = String(new Date().getTime()) + username
     let form_data = new FormData()
 
@@ -123,6 +125,7 @@ function posting() {
         processData: false,
         enctype: 'multipart/form-data',
         success: function (response) {
+            console.log(response['file_url'])
             document.getElementById('output_img').src = response['file_url']
             document.getElementById('output_url').value = response['file_url']
         }
@@ -132,6 +135,10 @@ function posting() {
 function posting1() {
     if (document.getElementById('input_img').src == no_href | document.getElementById('style_img').src == no_href) {
         return alert('Nope!')
+    }
+    let username = getCookie("nickname")
+    if (username == null | username == ''){
+        return
     }
     document.getElementById('style_box').classList.add('fade-out-box')
     document.getElementById('img_options').classList.add('fade-out-box')

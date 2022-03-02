@@ -54,8 +54,16 @@
                     </div>
                 </div>
                 {#                <i class="material-icons">notifications_active</i>#}
-                <i class="material-icons">account_circle</i>
-                <a href="/logout"> <i class="material-icons">logout</i></a>
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="material-icons">account_circle</i></button>
+                    <div class="dropdown-content">
+                        <a href="/seller/{{ user.id }}">My Page</a>
+                        <a>포인트: {{ user.point }}</a>
+                    </div>
+                </div>
+
+                <button class="dropbtn" onclick="window.location= '/logout'"><i class="material-icons">logout</i>
+                </button>
             {% endif %}
         </div>
     </div>

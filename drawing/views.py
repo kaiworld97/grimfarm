@@ -14,9 +14,12 @@ def upload(request):
         drawing_model.img = request.POST.get('url')
         drawing_model.buy_price = request.POST.get('price')
         drawing_model.category = request.POST.get('category')
-        drawing_model.owner = UserModel.objects.get(username=request.user)
-        drawing_model.author = UserModel.objects.get(username=request.user)
+        author = UserModel.objects.get(username=request.user)
+        drawing_model.owner = author
+        drawing_model.author = author
         drawing_model.save()
-        url_pk = DrawingModel.objects.filter(owner=UserModel.objects.get(username=request.user), title=request.POST.get('title'), )[0].id
+        author.point += 100
+        author.save()
+        url_pk = DrawingModel.objects.filter(owner=author, title=request.POST.get('title'), )[0].id
         print(request.POST.get('url'))
         return redirect(f'/detail/{url_pk}')
