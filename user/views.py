@@ -100,7 +100,10 @@ def sign_in(request):
         me = auth.authenticate(request, username=username, password=password)
         if me is not None:
             auth.login(request, me)
-            return redirect('/')
+            response = redirect('/')
+            nickname = UserModel.objects.get(username=username).nickname
+            response.set_cookie(key='nickname', value=nickname)
+            return response
         else:
             return render(request, 'user/sign_in.html', {'error': '이메일 혹은 비밀번호를 확인해주세요'})
 
@@ -108,7 +111,9 @@ def sign_in(request):
 @login_required
 def sign_out(request):
     auth.logout(request)
-    return redirect(request.headers['Referer'])
+    response = redirect(request.headers['Referer'])
+    response.set_cookie(key='nickname', value='')
+    return response
 
 
 def validate_email(value):
