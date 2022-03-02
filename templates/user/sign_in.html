@@ -21,31 +21,28 @@
 {% block content %}
     <div class="wrapper-signin">
         <div class="title">
-            <h1>Sign In</h1>
-        </div>
-        <div id="error-msg">
-            {% if error %}
-                <h3>{{ error }}</h3>
-            {% endif %}
+            Sign In
         </div>
         <div class="input-box">
             <form method="POST" action="/sign_in/">
-            {% csrf_token %}
-            <div class="input-info">
-                <input name="username" placeholder="Email">
-            </div>
-            <div class="input-info">
-                <input type="password" name="password" placeholder="Password">
-            </div>
-            <button type="submit">Sign In</button>
-            <p></p>
-            <div>
-                Not a member?
-                <a href="/sign_up/">Sign Up</a>
-            </div>
-        </form>
-        </div>
+                {% csrf_token %}
 
+                <input name="username" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
+
+                <button type="submit">Sign In</button>
+                <p></p>
+                <div>
+                    Not a member?
+                    <a id="sign-up-btn" href="/sign_up/">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="error-msg">
+        {% if error %}
+            <h3>{{ error }}</h3>
+        {% endif %}
     </div>
 
 {% endblock %}
