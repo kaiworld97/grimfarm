@@ -166,8 +166,8 @@
 }
 
 .fade-in-box {
-    animation: fadein 3s;
-    -webkit-animation: fadein 3s; /* Safari and Chrome */
+    animation: fadein 5s;
+    -webkit-animation: fadein 5s; /* Safari and Chrome */
 }
 
 @keyframes fadein {
@@ -200,8 +200,8 @@
 
 
 .small_box {
-    transition: 1s;
-    transform: scale(0.5) translateY(300px) rotate(360deg);
+    transition: 3s;
+    transform: scale(0.5) translateY(300px)  rotate(720deg);
 }
 
 #move_div {
@@ -210,7 +210,7 @@
     transform-origin: center;
     align-items: center;
     justify-content: center;
-    animation: rotate 2s ease forwards;
+    animation: rotate 5s ease forwards;
 }
 
 .move {
@@ -220,13 +220,13 @@
 }
 
 .move:nth-child(1) {
-    left: -240px;
-    animation: slideleft 2s ease forwards;
+    left: -220px;
+    animation: slideleft 5s ease forwards;
 }
 
 .move:nth-child(2) {
-    left: 240px;
-    animation: slideright 2s ease forwards;
+    left: 220px;
+    animation: slideright 5s ease forwards;
 }
 
 @keyframes rotate {
@@ -234,7 +234,7 @@
         transform: rotate(0deg);
     }
     100% {
-        transform: rotate(720deg);
+        transform: rotate(1440deg);
     }
 }
 

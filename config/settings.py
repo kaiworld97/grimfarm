@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'market',
     'drawing',
     'search',
-    'notifications',
 ]
 
 MIDDLEWARE = [
