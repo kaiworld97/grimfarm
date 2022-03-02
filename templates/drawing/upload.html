@@ -51,7 +51,9 @@
         <div id="style_box">
             {% for style in styles %}
                 <div class="select_box">
-                    <img src="{{ style.url }}" onclick="click_style(this)">
+                    <div class="style_wrapper">
+                        <img src="{{ style.url }}" onclick="click_style(this)">
+                    </div>
                     <p>{{ style.title }}</p>
                 </div>
             {% endfor %}

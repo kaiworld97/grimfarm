@@ -36,6 +36,7 @@ def search(request):
                     b['buy_price'] = list.buy_price
                     b['pk'] = list.pk
                     b['proimg'] = list.owner.img
+                    b['owner_pk'] = list.owner.id
                     aa.append(b)
 
                 return JsonResponse(aa, status=200, safe=False)
@@ -68,6 +69,7 @@ def search(request):
                     b['buy_price'] = list.buy_price
                     b['pk'] = list.pk
                     b['proimg'] = list.owner.img
+                    b['owner_pk'] = list.owner.id
                     aa.append(b)
 
                 return JsonResponse(aa, status=200, safe=False)
