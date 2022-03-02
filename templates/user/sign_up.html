@@ -21,41 +21,29 @@
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
     <div class="wrapper-signup">
-        <div class="title">Sign Up</div>
+        <div class="title">
+            Sign Up
+        </div>
         <div class="container-signup">
             <form method="POST" action="/sign_up/" name="sign_up">
                 {% csrf_token %}
-                <div class="label-info">
-                    <label for="email">Email</label>
-                </div>
-                <div class="input-info">
-                    <input name="email" placeholder="email" autocomplete="off" required>
-                </div>
-                <div class="label-info">
-                    <label for="password">Password</label>
-                </div>
-                <div class="input-info">
-                    <input type="password" name="password" placeholder="Password" autocomplete="off" required>
-                </div>
-                <div class="label-info">
-                    <label for="password2">Re-enter Password</label>
-                </div>
-                <div class="input-info">
+                <div class="type-box">
+                    <p for="email">Email</p>
+                    <input name="email" placeholder="Email" autocomplete="off" required>
+                    <p for="password">Password</p>
+                        <input type="password" name="password" placeholder="Password" autocomplete="off" required>
+                    <p for="password2">Re-enter Password</p>
                     <input type="password" name="password2" placeholder="Re-enter password" autocomplete="off" required>
-                </div>
-                <div class="label-info">
-                    <label for="Nickname">Nickname</label>
-                </div>
-                <div class="input-info">
-                    <input name="nickname" placeholder="nickname" autocomplete="off" required>
-                </div>
-                <div class="test_image">
-                    <img src="{{ url }}">
+                    <p for="Nickname">Nickname</p>
+                    <input name="nickname" placeholder="Nickname" autocomplete="off" required>
+                    <div class="test_image">
+                        <img src="{{ url }}">
+                    </div>
                 </div>
                 <input value="{{ title }}" style="display: none" name="answer">
-                <div>
-                    그림에 존재하는 동물을 적어주세요
-                    <input name="user_answer" placeholder="'고양이' 혹은 '강아지'" required>
+                <div class="answer">
+                    <p>그림에 존재하는 동물을 적어주세요</p>
+                    <input id="answer" name="user_answer" placeholder="'고양이' 혹은 '강아지'" required>
                 </div>
                 <button type="submit">Create Account</button>
             </form>
