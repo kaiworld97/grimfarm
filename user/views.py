@@ -14,7 +14,7 @@ import re
 def sign_up(request):
     img_list = [
         {'title': '강아지',
-         'url': 'https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EB%94%94%ED%8F%B4%ED%8A%B8.jpeg'},
+         'url': 'https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EC%B9%B8%EB%94%98%20%EB%A3%A8%ED%82%A4.png'},
         {'title': '고양이',
          'url': 'https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EC%B9%B8%EB%94%98%20%ED%9B%84%EC%B6%941.png'}
     ]
