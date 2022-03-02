@@ -19,7 +19,6 @@ def sign_up(request):
          'url': 'https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EC%B9%B8%EB%94%98%20%ED%9B%84%EC%B6%941.png'}
     ]
     test_img = random.sample(img_list, 1)[0]
-    print(test_img)
 
     if request.method == 'GET':  # 페이지 접근
         user = request.user.is_authenticated  # 로그인 되어 있는지
@@ -30,8 +29,6 @@ def sign_up(request):
 
     if request.method == 'POST':  # 회원정보 입력 받았을 때
 
-        user_img = request.FILES.get('select-img', '')
-        print(user_img)
         username = request.POST.get('email', '')
         password = request.POST.get('password', '')
         password2 = request.POST.get('password2', '')
@@ -75,7 +72,7 @@ def sign_up(request):
 
             if answer == user_answer:
                 UserModel.objects.create_user(
-                    img=user_img,
+                    img=test_img['url'],
                     username=username,
                     password=password,
                     nickname=nickname,
