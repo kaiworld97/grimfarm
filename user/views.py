@@ -75,7 +75,7 @@ def sign_up(request):
 
             if answer == user_answer:
                 UserModel.objects.create_user(
-                    user_img=user_img,
+                    img=user_img,
                     username=username,
                     password=password,
                     nickname=nickname,
