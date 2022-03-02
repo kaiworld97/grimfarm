@@ -24,18 +24,30 @@ seller
     <div id="background_profile">
 {#         <img class="bg_img" src="{% static '/img/칸딘 후추1.png' %}">#}
         <div id="pic_profile">
-{#            <img class="profile_img" src="{% static '/img/monday.jfif' %}">#}
+
+            <img class="profile_img" src="{{ owner.img }}">
         </div>
     </div>
 
     <div id="profile_wrap">
         <div id="info_profile">
-            <p id="nickname"> JIHOON </p>
+            <p id="nickname"> {{ owner.nickname }} </p>
+            {% if user.id == owner.id %}
             <button id="btn1" onclick="open_modal();">settings</button>
-            <p id="creator">Created by  KWANGMIN </p>
+            {% endif %}
+
+        <p>로그인한유저, 판매페이지주인확인</p>
+        <p>user.id: {{ user.id }}
+        owner.id: {{ owner.id }}</p>
+
+
             <div id="info_trading">
                 <div class="detail_trading">
-                    <span>5.0K</span>
+                    <span>
+                        {% if drawings %}
+                            {{ drawings|length }}
+                        {% endif %}
+                    </span>
                     <p>items</p>
                 </div>
                 <div class="detail_trading">
@@ -52,25 +64,35 @@ seller
                 </div>
             </div>
             <div id="description">
-                지훈님네 후추는 귀엽습니다.. 광민님의 손길을 거쳐 더 귀엽게 되었어요... 나만 고양이 없어....
+                <p id="desc_text">지훈님네 후추는 귀엽습니다.. 광민님의 손길을 거쳐 더 귀엽게 되었어요... 나만 고양이 없어....</p>
             </div>
         </div>
 </div>
 
+
+{#    프로필수정#}
     <dialog id="info_edit" class="modal modal_box">
 
         <button onclick="close_modal()">&times;</button>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-{#        <input name="title" value="{{ drawing.title }}">#}
+            <div class="profile_edit">
+                <div id="profileimg">
 
-            <input name="desc" value="{{ drawing.description }}">
+                </div>
+                <label for="choose_pic">
+                    프로필사진변경
+                </label>
+             <input type="file" id="choose_pic" class="selectfile hidden" name="user_img" accept="image/*" onchange="loadFile(this)">
+            <p id="img_name"></p>
+            </div>
+            <div id="user_nickname">
+            Nickname: <input name="nickname" value="{{ owner.nickname }}">
+            </div>
 
             <button type="submit" >수정하기</button>
         </form>
     </dialog>
-
-
 
 
    <div class="tap_container">
@@ -78,7 +100,7 @@ seller
 	<ul class="tabs">
 		<li class="tab-link current" data-tab="tab-1">OWN</li>
 		<li class="tab-link" data-tab="tab-2">SELL</li>
-		<li class="tab-link" data-tab="tab-3">LIKE</li>
+{#		<li class="tab-link" data-tab="tab-3">LIKE</li>#}
 	</ul>
 <!-- 탭 메뉴 상단 끝 -->
 <!-- 탭 메뉴 내용 시작 -->
@@ -88,18 +110,20 @@ seller
         {% if drawings %}
             {% for drawing in drawings %}
                 <div id="imgbox">
-                    <img class="main_img" src="{% static '{{ drawing.img }}' %}">
-{#                    <img class="main_img" src="{{ drawing.img }}">#}
-{#                    <img class="main_img" src="{% static '/img/칸딘 후추1.png' %}">#}
-
-                    <div id="imginfo">
+{#                로그인한 유저랑 판매자랑 같으면 디테일페이지, 다르면 구매자페이지로 이동#}
+                    {% if user == owner %}
+                    <img class="main_img" src="{{ drawing.img }}" onclick="location.href = '{% url 'detail' drawing.owner_id drawing.pk %}'">
+                    {% else %}
+                    <img class="main_img" src="{{ drawing.img }}" onclick="location.href = '{% url 'buy' drawing.owner_id drawing.pk %}'">
+                    {% endif %}
+                <div id="imginfo">
                         <div id="info_left">
-                            <p>owner: {{ drawing.owner_id }}</p>
-                            <p>creator: {{ drawing.author_id }}</p>
+                            <p>owner: {{ drawing.owner.nickname }}</p>
+                            <p>creator: {{ drawing.author.nickname }}</p>
                         </div>
                         <div id="info_right">
                             <p>price: {{ drawing.buy_price }}</p>
-                            <p>name: {{ drawing.nickname }}</p>
+                            <p>name: {{ drawing.title }}</p>
                         </div>
 
                     </div>
@@ -110,11 +134,39 @@ seller
     </div>
 	</div>
 	<div id="tab-2" class="tab-content">
-  <p>  판매중인 GRIM  </p>
+    <p class="tab_title">판매중인 GRIM</p>
+        <div id="grimwrap">
+        {% if drawings %}
+            {% for drawing in drawings %}
+                {% if drawing.category == "on" %}
+                <div id="imgbox">
+                     {% if user == owner %}
+                    <img class="main_img" src="{{ drawing.img }}" onclick="location.href = '{% url 'detail' drawing.owner_id drawing.pk %}'">
+                    {% else %}
+                    <img class="main_img" src="{{ drawing.img }}" onclick="location.href = '{% url 'buy' drawing.owner_id drawing.pk %}'">
+                    {% endif %}
+
+                    <div id="imginfo">
+                        <div id="info_left">
+                            <p>owner: {{ drawing.owner.nickname }}</p>
+                            <p>creator: {{ drawing.author.nickname }}</p>
+                        </div>
+                        <div id="info_right">
+                            <p>price: {{ drawing.buy_price }}</p>
+                            <p>name: {{ drawing.title }}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
-	<div id="tab-3" class="tab-content">
-  <p>  좋아요한 GRIM </p>
-	</div>
+    </div>
+{#	<div id="tab-3" class="tab-content">#}
+{#  <p>  좋아요한 GRIM </p>#}
+{#	</div>#}
 <!-- 탭 메뉴 내용 끝 -->
 </div>
 </div>

@@ -91,7 +91,12 @@ div#pic_profile {
     margin-top: 14vh;
     margin-left: 46vw;
 }
-
+img.profile_img {
+    width: 7vw;
+    height: 7vw;
+    object-fit: cover;
+    border-radius: 50%;
+}
 div#info_profile {
     padding-top: 6vh;
 }
@@ -129,3 +134,5 @@ div#info_trading {
     border-radius: 5px;
     padding-top: 10px;
 }
+
+/*프로필수정팝업*/
