@@ -23,19 +23,8 @@
     <div class="wrapper-signup">
         <div class="title">Sign Up</div>
         <div class="container-signup">
-            <form method="POST" action="/sign_up/" name="sign_up" enctype="multipart/form-data">
+            <form method="POST" action="/sign_up/" name="sign_up">
                 {% csrf_token %}
-
-                <div class="profile-box">
-                    <div id="profile-img"></div>
-                    <div class="select-profile-img" for="select-img">
-                        <label for="select-img">
-                            Select Profile Image
-                        </label>
-                    </div>
-                    <input type="file" id="select-img" name="select-img" accept="image/*" onchange="loadFile(this)">
-                    <img src="{{ user_img }}">
-                </div>
                 <div class="label-info">
                     <label for="email">Email</label>
                 </div>
