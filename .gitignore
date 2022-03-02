@@ -21,3 +21,7 @@ venv/
 0006_initial.py
 
 config/aws.json
+
+0002_usermodel_img_usermodel_point_and_more.py
+
+0003_stylemodel_alter_drawingmodel_buy_price.py

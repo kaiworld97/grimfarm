@@ -11,6 +11,7 @@ class UserModel(AbstractUser):
     nickname = models.CharField(max_length=30)
     user_img = models.FileField(upload_to='')
     point = models.IntegerField(default=0)
-    user_bio = models.TextField(max_length=256)
+    bio = models.CharField(max_length=256, default='')
+
 
 

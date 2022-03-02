@@ -92,52 +92,54 @@ function getCookie(name) {
     return cookieValue;
 }
 function posting() {
-    // let username = getCookie("cookie_name")
-    let username = 'hi'
+    let username = getCookie("nickname")
+    if (username == null | username == ''){
+        return alert('Please Sign in')
+    }
     let key = String(new Date().getTime()) + username
     let form_data = new FormData()
 
-    console.log(input_type)
-    console.log(input_now)
-    console.log(style_type)
-    console.log(style_now)
-    console.log(key)
 
 
-    form_data.append("input_type", input_type)
-    form_data.append("style_type", style_type)
-    form_data.append("input_now", input_now)
-    form_data.append("style_now", style_now)
+    if(input_type == "url"){
+        form_data.append("img_url", input_now)
+    }else{
+        form_data.append("img", input_now)
+    }
+    if(style_type == "url"){
+        form_data.append("style_url", style_now)
+    }else{
+        form_data.append("style_img", style_now)
+    }
     form_data.append("key", key)
 
-    // $.ajax({
-    //     type: "POST",
-    //     url: 'http://127.0.0.1:5000/api/v1/nsts/',
-    //     data: form_data,
-    //     cache: false,
-    //     contentType: false,
-    //     processData: false,
-    //     enctype: 'multipart/form-data',
-    //     success: function (response) {
-    //         console.log(response['file_url'])
-    //         let output = document.getElementById('output')
-    //         let out_img = document.createElement("img");
-    //         out_img.src = response['file_url']
-    //         out_img.style.width = "100%";
-    //         out_img.style.height = "100%";
-    //         out_img.style.visibility = "visible";
-    //         out_img.style.objectFit = "cover"
-    //         output.appendChild(out_img);
-    //         document.getElementById('output_url').value = response['file_url']
-    //     }
-    // });
+    console.log(input_now)
+    console.log(style_now)
+
+    $.ajax({
+        type: "POST",
+        url: 'http://127.0.0.1:5000/api/v1/nsts/',
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        enctype: 'multipart/form-data',
+        success: function (response) {
+            console.log(response['file_url'])
+            document.getElementById('output_img').src = response['file_url']
+            document.getElementById('output_url').value = response['file_url']
+        }
+    });
 }
 
 function posting1() {
     if (document.getElementById('input_img').src == no_href | document.getElementById('style_img').src == no_href) {
         return alert('Nope!')
     }
-    document.getElementById('output_url').value = document.getElementById('style_img').src
+    let username = getCookie("nickname")
+    if (username == null | username == ''){
+        return
+    }
     document.getElementById('style_box').classList.add('fade-out-box')
     document.getElementById('img_options').classList.add('fade-out-box')
     document.getElementById('input_p').classList.add('fade-out-box')
