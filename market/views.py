@@ -42,6 +42,7 @@ def detail(request, owner_pk, drawing_pk):
         price_list.append([prices.pk ,prices.sell_price])
 
     # 판매정보 팝업수정
+
     if request.method == "POST":
         drawing_img.description = request.POST['desc']
         drawing_img.buy_price = request.POST['price']
@@ -100,6 +101,7 @@ def buy(request, drawing_pk, owner_pk):
 
     return render(request, 'market/buy.html', {'market':market, 'owner':owner, 'drawing_img':drawing_img, 'price_list':price_list})
     # if request.method == 'GET':
+
     #     return render(request, 'market/buy.html', {'drawing':drawing})
     # elif request.method == 'POST':
     #     return redirect('/')uy.html', {'draw

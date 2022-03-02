@@ -20,6 +20,7 @@ detail
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
 <div id="img_detail_box">
+
     <div id="selling_img">
         <img class="sales_img" src="{{ drawing_img.img }}">
 
@@ -27,6 +28,7 @@ detail
     <div id="img_info_area">
 
             <p id="img_title">{{ drawing_img.title }}</p>
+
             <button id="btn1" onclick="open_modal();">settings</button>
             <p class="img_detail">Owned by {{ owner.nickname }}</p>
             <p class="img_detail">Created by {{ drawing.author.nickname }}</p>
@@ -36,6 +38,7 @@ detail
 
             <div id="price_chart">
                 <p class="img_detail">Price Chart</p>
+
                         price_list:{{ price_list|safe }}
 {#                        len: {{ price_list|length }}#}
             {% if price_list|length > 1 %}
@@ -43,6 +46,7 @@ detail
             {% else %}
                 <p style="color: red">거래내역이 없습니다</p>
             {% endif %}
+
 
 
         </div>
@@ -92,6 +96,7 @@ detail
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       var prices = {{ price_list|safe }}
+
 
           console.log(typeof(prices))
       function drawChart() {

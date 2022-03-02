@@ -133,6 +133,7 @@ nav .icons i {
     color: white;
     font-size: 16px;
     border: none;
+    display: flex;
 }
 
 .dropdown {
@@ -147,10 +148,13 @@ nav .icons i {
     display: none;
     position: absolute;
     top: 100%;
+    right: -50%;
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    cursor: pointer;
+    text-align: center;
 }
 
 .dropdown-content a {

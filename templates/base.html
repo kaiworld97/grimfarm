@@ -40,31 +40,30 @@
                 <input name="search"></form>
         </div>
         <div class="icons">
-            <div class="dropdown">
-                <button class="dropbtn"><i class="material-icons">notifications_none</i></button>
-                <div class="dropdown-content">
-                    <a href="#">알림 1</a>
-                    <a href="#">알림 2</a>
-                    <a href="#">알림 3</a>
-                </div>
-            </div>
-            <i class="material-icons">account_circle</i>
-            {#                <i class="material-icons">notifications_active</i>#}
+
 
             {% if not user.is_authenticated %}
-                <i class="material-icons">login</i>
+                <a href="/sign_in"> <i class="material-icons">login</i></a>
             {% else %}
-                <ul>
-                    <li>
-                    <span>
-                        {{ user.nickname }} 님 반갑습니다!
-                    </span>
-                    </li>
-                    <li>
-                        <a href="/login"> <i class="material-icons">login</i></a>
-                        {#                        <a href="/logout"> <i class="material-icons">logout</i></a>#}
-                    </li>
-                </ul>
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="material-icons">notifications_none</i></button>
+                    <div class="dropdown-content">
+                        <a href="#">알림 1</a>
+                        <a href="#">알림 2</a>
+                        <a href="#">알림 3</a>
+                    </div>
+                </div>
+                {#                <i class="material-icons">notifications_active</i>#}
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="material-icons">account_circle</i></button>
+                    <div class="dropdown-content">
+                        <a href="/seller/{{ user.id }}">My Page</a>
+                        <a>포인트: {{ user.point }}</a>
+                    </div>
+                </div>
+
+                <button class="dropbtn" onclick="window.location= '/logout'"><i class="material-icons">logout</i>
+                </button>
             {% endif %}
         </div>
     </div>

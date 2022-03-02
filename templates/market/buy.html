@@ -43,6 +43,7 @@ buy
 <div id="img_detail_box">
     <div id="selleing_img">
         <img class="sales_img" src="{{ drawing_img.img }}">
+
     </div>
 
     <div id="img_info_area">
@@ -50,6 +51,7 @@ buy
             <p class="img_detail">Owned by {{ owner.nickname }}</p>
             <p class="img_detail">Created by {{ drawing.author.nickname }}</p>
             <p class="img_price">Price : {{ drawing_img.buy_price }}</p>
+
             <p class="img_detail">Description</p>
             <p id="img_desc">{{ drawing_img.description }}</p>
 
@@ -67,6 +69,7 @@ buy
         </div>
         <p>Sales Status: {{ drawing_img.category }}</p>
             {% if drawing_img.category == 'on' %}
+
                 <button onclick="open_modal()">Buy Now</button>
             {% endif %}
 
