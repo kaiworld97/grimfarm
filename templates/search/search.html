@@ -37,7 +37,7 @@ search
 </div>
     <div class = 'wrap' >
          {% for drawing in page_obj %}
-        <article id="content" class = 'box' onclick="location.href='/detail/{{ drawing.owner.pk }}/{{ drawing.pk }}'">
+             <article id="content" class = 'box' onclick="location.href='/detail/{{ drawing.owner.pk }}/{{ drawing.pk }}'">
                 <img src="{{ drawing.img }}" alt="이미지">
             <div class = 'post'>
 
