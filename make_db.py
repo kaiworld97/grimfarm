@@ -10,10 +10,9 @@ from user.models import *  # django.setup() 이후에 임포트해야 오류가 
 from drawing.models import *
 from search.models import *
 from market.models import *
-from notifications.models import *
 
 user_data = ['a@a.a', 'a', 'a']
-drawing_data = ['a', 'a',
+drawing_data = ['abc', 'a',
                 "https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EC%B9%B8%EB%94%98%20%ED%9B%84%EC%B6%941.png",
                 'save']
 

@@ -102,7 +102,7 @@ def sign_in(request):
             auth.login(request, me)
             response = redirect('/')
             nickname = UserModel.objects.get(username=username).nickname
-            response.set_cookie(key='nickname', value=nickname.encode('UTF-8'))
+            response.set_cookie(key='nickname', value=nickname.encode('utf-8'))
             return response
         else:
             return render(request, 'user/sign_in.html', {'error': '이메일 혹은 비밀번호를 확인해주세요'})

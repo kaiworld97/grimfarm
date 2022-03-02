@@ -33,30 +33,30 @@ $(function(){
         });
     });
 
-
-function loadFile(input){
-    let file = input.files[0];
-    let file_name = document.getElementById('img_name');
-    file_name.textContent = file.name;
-
-    let file_img = document.createElement("img");
-    file_img.setAttribute("class", 'new_img')
-    file_img.src = URL.createObjectURL(file);
-
-    file_img.style.width = "8vw";
-    file_img.style.height = "8vw";
-    file_img.style.visibility = "visible";
-    file_img.style.objectFit = "contain";
-
-
-    // document.getElementById('btn').classList.add('hidden')
-    document.getElementById('choose_pic').classList.add('hidden')
-
-    let container = document.getElementById("profileimg");
-
-    container.style.width = "100px";
-    container.innerHTML = '';
-    container.appendChild(file_img);
-
-
-}
+//
+// function loadFile(input){
+//     let file = input.files[0];
+//     let file_name = document.getElementById('img_name');
+//     file_name.textContent = file.name;
+//
+//     let file_img = document.createElement("img");
+//     file_img.setAttribute("class", 'new_img')
+//     file_img.src = URL.createObjectURL(file);
+//
+//     file_img.style.width = "8vw";
+//     file_img.style.height = "8vw";
+//     file_img.style.visibility = "visible";
+//     file_img.style.objectFit = "contain";
+//
+//
+//     // document.getElementById('btn').classList.add('hidden')
+//     document.getElementById('choose_pic').classList.add('hidden')
+//
+//     let container = document.getElementById("profileimg");
+//
+//     container.style.width = "100px";
+//     container.innerHTML = '';
+//     container.appendChild(file_img);
+//
+//
+// }

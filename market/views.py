@@ -14,7 +14,7 @@ from user.models import UserModel
 def main(request):
     return render(request, 'market/main.html')
 
-@login_required(login_url='main')
+@login_required()
 def seller(request, pk):
     #own:판매자가 가지고 있는 모든 그림 불러오기
     drawings = DrawingModel.objects.filter(owner_id=pk)
@@ -23,6 +23,7 @@ def seller(request, pk):
     if request.method == "POST":
         # owner.img = request.POST['user_img']
         owner.nickname = request.POST['nickname']
+        owner.bio = request.POST['bio']
         owner.date_joined = datetime.date.today()
         owner.save()
         return redirect('seller', owner.pk)
@@ -30,6 +31,7 @@ def seller(request, pk):
     return render(request, 'market/seller.html', {'drawings':drawings, 'owner':owner})
 
 
+@login_required()
 def detail(request, owner_pk, drawing_pk):
     # drawing = DrawingModel.objects.get(pk=owner_pk)
     market = MarketModel.objects.filter(drawing_id=drawing_pk)
@@ -70,7 +72,7 @@ def buy(request, drawing_pk, owner_pk):
     # 가격변동리스트
     price_list = [["Date", "Price"],]
     for prices in market:
-        price_list.append([prices.pk ,prices.sell_price])
+        price_list.append([prices.id ,prices.sell_price])
 
     # 구매정보입력
     if request.method == "POST":
@@ -100,8 +102,3 @@ def buy(request, drawing_pk, owner_pk):
         return redirect('seller', owner.pk)
 
     return render(request, 'market/buy.html', {'market':market, 'owner':owner, 'drawing_img':drawing_img, 'price_list':price_list})
-    # if request.method == 'GET':
-
-    #     return render(request, 'market/buy.html', {'drawing':drawing})
-    # elif request.method == 'POST':
-    #     return redirect('/')uy.html', {'draw
