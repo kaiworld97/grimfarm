@@ -1,35 +1,157 @@
+.base_content {
+    height: 120vh;
+
+}
+
+
 /*그림판매정보박스*/
+div#detail_wrap {
+    display: flex;
+    flex-direction: column;
+}
 
 div#img_detail_box {
     display: flex;
     flex-direction: row;
-    width: 70vw;
-    border: 1px darkgray solid;
     border-radius: 10px;
-    margin-top: 7vh;
+    margin: 100px 0 50px 0;
+    height: 450px;
 }
-div#selleing_img {
-    width: 30vw;
-    height: 35vw;
+
+div#selling_img {
+    max-width: 360px;
+    max-height: 440px;
     background-color: aliceblue;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-left: 120px;
 }
 img.sales_img {
     object-fit: cover;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
 }
 div#img_info_area {
     text-align: left;
-    margin-left: 2vw;
+    margin-left: 70px;
+    max-height: 440px;
+    max-width: 300px;
 }
+
 p#img_title {
     font-size: 2rem;
     font-weight: bolder;
+}
+p.img_price {
+    font-size: 20px;
+    font-weight: bold;
 }
 p#img_desc {
     width: 33vw;
     margin-left: 1vw;
     color: #565656;
     font-size: 0.9rem;
+}
+
+/*거래내역(activity)*/
+div#img_activity {
+    /*border: 1px darkgray solid;*/
+    border-radius: 10px;
+    margin-top: 7vh;
+}
+
+/*모달팝업*/
+div#detail_modal {
+    display: flex;
+    flex-direction: column;
+}
+
+dialog#buy_now {
+    width: 350px;
+    height: 350px;
+    border: none;
+}
+
+p.buy_title {
+    font-size: 30px;
+    font-weight: bold;
+}
+p.buy_p {
+    font-size: 20px;
+}
+button.buy_btn {
+    margin-top: 35px;
+}
+
+/*거래내역액티비티*/
+.deal_head_wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-bottom: 10px;
+}
+.deal_item_wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+.deal_head_items1 {
+    width: 60px;
+    margin-left: 75px;
+}
+.deal_head_items2 {
+    width: 60px;
+    margin-left: 70px;
+}
+.deal_head_items3 {
+    width: 60px;
+    margin-left: 65px;
+}
+.deal_head_items4 {
+    width: 60px;
+    margin-left: 55px;
+}
+.deal_head_items5 {
+    width: 60px;
+    margin-left: 135px;
+}
+
+
+
+
+
+
+.deal_items1 {
+    width: 70px;
+    margin-left: 70px;
+}
+.deal_items2 {
+    width: 50px;
+    margin-left: 70px;
+}
+.deal_items3 {
+    width: 90px;
+    margin-left: 55px;
+}
+.deal_items4 {
+    width: 90px;
+    margin-left: 25px;
+}
+.deal_items5 {
+    width: 220px;
+    margin-left: 35px;
+}
+
+p.activity_title {
+    text-align: left;
+    font-size: 20px;
+    margin-left: 30px;
+    font-weight: bold;
+}
+p.chart_title {
+    text-align: left;
+    font-size: 20px;
+    margin-left: 30px;
+    font-weight: bold;
 }

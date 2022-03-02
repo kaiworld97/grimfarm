@@ -19,8 +19,9 @@ detail
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
-<div id="img_detail_box">
 
+<div id="detail_wrap">
+<div id="img_detail_box">
     <div id="selling_img">
         <img class="sales_img" src="{{ drawing_img.img }}">
 
@@ -31,33 +32,51 @@ detail
 
             <button id="btn1" onclick="open_modal();">settings</button>
             <p class="img_detail">Owned by {{ owner.nickname }}</p>
-            <p class="img_detail">Created by {{ drawing.author.nickname }}</p>
+            <p class="img_detail">Created by {{ drawing_img.author.nickname }}</p>
             <p class="img_price">Price : {{ drawing_img.buy_price }}</p>
             <p class="img_detail">Description</p>
             <p id="img_desc">{{ drawing_img.description }}</p>
-
-            <div id="price_chart">
-                <p class="img_detail">Price Chart</p>
-
-                        price_list:{{ price_list|safe }}
-{#                        len: {{ price_list|length }}#}
-            {% if price_list|length > 1 %}
-            <div id="chart_div"></div>
-            {% else %}
-                <p style="color: red">거래내역이 없습니다</p>
-            {% endif %}
-
-
-
-        </div>
-
-
     </div>
 </div>
 
-<div id="img_collection">
+{#거래내역차트 들어가는 곳#}
+<div id="price_chart">
+    <p class="chart_title">Price Chart</p>
 
+{#    price_list:{{ price_list|safe }}#}
+    {#                        len: {{ price_list|length }}#}
+    {% if price_list|length > 1 %}
+        <div id="chart_div"></div>
+    {% else %}
+        <p style="color: red">거래내역이 없습니다</p>
+    {% endif %}
 </div>
+
+
+
+{#거래내역#}
+    <div id="img_activity">
+            <p class="activity_title">Item Activity</p>
+            <div class="deal_head_wrap">
+                <div class="deal_head_items1">Event</div>
+                <div class="deal_head_items2">Price</div>
+                <div class="deal_head_items3">From</div>
+                <div class="deal_head_items4">To</div>
+                <div class="deal_head_items5">Date</div>
+            </div>
+            {% for m in market %}
+            <div class="deal_item_wrap">
+                <div class="deal_items1">Dealing</div>
+                <div class="deal_items2">{{ m.sell_price }}</div>
+                <div class="deal_items3">{{ m.seller.nickname }}</div>
+                <div class="deal_items4">{{ m.buyer.nickname }}</div>
+                <div class="deal_items5">{{ m.created_at }}</div>
+            </div>
+            {% endfor %}
+
+        </div>
+</div>
+
 
 {#    디테일페이지 수정 팝업#}
     <dialog id="news_detail" class="modal modal_box">
@@ -66,25 +85,31 @@ detail
         <form method="POST">
         {% csrf_token %}
             <div id="detail_modal">
-                <h3>{{ drawing_img.title }}</h3>
-                <div>
-                Description: <input name="desc" value="{{ drawing_img.description }}">
+                <h1>{{ drawing_img.title }}</h1>
+                <div class="detail_edit">
+                    <p class="edit_p">Description</p>
+                    <input class="info_input" name="desc" value="{{ drawing_img.description }}">
                  </div>
-                <div>
-                Price: <input name="price" value="{{ drawing_img.buy_price }}">
+                <div class="detail_edit">
+                    <p class="edit_p">Price</p>
+                    <input class="info_input" name="price" value="{{ drawing_img.buy_price }}">
                 </div>
-                {% if drawing_img.category == 'on' %}
-                <div>
-                <label for="input-married">On sale</label>
-                <input id="input-married" name="status" type="checkbox" checked>
-                </div>
-                {% else %}
-                <div>
-                <label for="input-married">On sale</label>
-                <input id="input-married" name="status" type="checkbox">
-                </div>
-                {% endif %}
             </div>
+{#                status: {{ drawing_img.category  }}#}
+                {% if drawing_img.category == "on" or drawing_img.category == "sell" %}
+                    <div id="sale_cb">
+                    <label for="input-sale">On sale</label>
+                    <input id="input-sale" name="status" type="checkbox" checked>
+                    </div>
+                {% else %}
+                    <div class="edit_sale">
+                    <label for="input-sale">
+                    On sale
+                    </label>
+                    <input id="input-sale" name="status" type="checkbox">
+                    </div>
+                {% endif %}
+
 
             <button type="submit" >수정하기</button>
         </form>

@@ -15,70 +15,68 @@ buy
 {#자바스크립트 파일 넣는 곳#}
 {% block js %}
 <script  type="text/javascript" src="{% static '/js/buy.js' %}"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-{#<script type="text/javascript" src="https://www.google.com/jsapi"></script>#}
-{#    가격변동차트#}
-{#<script  type="text/javascript">#}
-{#      google.load("visualization", "1", {packages:["corechart"]});#}
-{#      google.setOnLoadCallback(drawChart);#}
-{#      function drawChart() {#}
-{##}
-{#        var data = google.visualization.arrayToDataTable([#}
-{#          ['Date', 'Price'],#}
-{#            ['1',  290],#}
-{#            ['2',  300],#}
-{#            ['3', 320]#}
-{#        ]);#}
-{#        var options = {#}
-{#          title: 'Price Chart'#}
-{#        };#}
-{#        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));#}
-{#        chart.draw(data, options);#}
-{#      }#}
-{#</script>#}
+{#<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>#}
 {% endblock %}
-
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
-<div id="img_detail_box">
-    <div id="selleing_img">
-        <img class="sales_img" src="{{ drawing_img.img }}">
 
+<div id="detail_wrap">
+    <div id="img_detail_box">
+        <div id="selling_img">
+        <img class="sales_img" src="{{ drawing_img.img }}">
     </div>
 
     <div id="img_info_area">
             <p id="img_title">{{ drawing_img.title }}</p>
             <p class="img_detail">Owned by {{ owner.nickname }}</p>
-            <p class="img_detail">Created by {{ drawing.author.nickname }}</p>
+            <p class="img_detail">Created by {{ drawing_img.author.nickname }}</p>
             <p class="img_price">Price : {{ drawing_img.buy_price }}</p>
 
             <p class="img_detail">Description</p>
             <p id="img_desc">{{ drawing_img.description }}</p>
+            <p>Sales Status: {{ drawing_img.category }}</p>
+                {% if drawing_img.category == "on" or drawing_img.category == "sell" %}
+                    <button class="buy_btn" onclick="open_modal()">Buy Now</button>
+                {% endif %}
 
-            <div id="price_chart">
-                <p class="img_detail">Price Chart</p>
-            {{ price_list|safe }}
+    </div>
+</div>
+
+
+    {#거래내역차트 들어가는 곳#}
+ <div id="price_chart">
+                <p class="chart_title">Price Chart</p>
+{#            {{ price_list|safe }}#}
 
                 {% if price_list|length > 1 %}
                     <div id="chart_div"></div>
                 {% else %}
                     <p style="color: red">거래내역이 없습니다</p>
                 {% endif %}
+        </div>
 
+        <div id="img_activity">
+            <p class="activity_title">Item Activity</p>
+            <div class="deal_head_wrap">
+                <div class="deal_head_items1">Event</div>
+                <div class="deal_head_items2">Price</div>
+                <div class="deal_head_items3">From</div>
+                <div class="deal_head_items4">To</div>
+                <div class="deal_head_items5">Date</div>
+            </div>
+            {% for m in market %}
+            <div class="deal_item_wrap">
+                <div class="deal_items1">Dealing</div>
+                <div class="deal_items2">{{ m.sell_price }}</div>
+                <div class="deal_items3">{{ m.seller.nickname }}</div>
+                <div class="deal_items4">{{ m.buyer.nickname }}</div>
+                <div class="deal_items5">{{ m.created_at }}</div>
+            </div>
+            {% endfor %}
 
         </div>
-        <p>Sales Status: {{ drawing_img.category }}</p>
-            {% if drawing_img.category == 'on' %}
-
-                <button onclick="open_modal()">Buy Now</button>
-            {% endif %}
-
-    </div>
 </div>
 
-<div id="img_collection">
-
-</div>
 
 {#    구매하기 팝업#}
     <dialog id="buy_now" class="modal modal_box">
@@ -86,12 +84,12 @@ buy
         <button onclick="close_modal()">&times;</button>
         <form method="POST">
             {% csrf_token %}
-            <p>{{ drawing_img.title  }}</p>
-             <p>Price: {{ drawing_img.buy_price }}</p>
-            <p>My Point: {{ user.point  }}</p>
+            <p class="buy_title">{{ drawing_img.title  }}</p>
+             <p class="buy_p">Price: {{ drawing_img.buy_price }}</p>
+            <p class="buy_p">My Point: {{ user.point  }}</p>
 
 {#            <p>거래후잔여 Point: {{ user.point |add: "2" }}</p>#}
-            <button type="submit" >구입하기</button>
+            <button class="buy_btn" type="submit" >구입하기</button>
         </form>
     </dialog>
 
@@ -103,13 +101,18 @@ buy
       google.setOnLoadCallback(drawChart);
       var prices = {{ price_list|safe }}
 
+
           console.log(typeof(prices))
       function drawChart() {
        var data = google.visualization.arrayToDataTable(
             prices
             );
         var options = {
-          title: 'Price Chart'
+          title: 'Price Chart',
+          {#curveType: 'function',#}
+          {#legend: { position: 'bottom' }#}
+          {#color: ['red'],#}
+          {#  lineWidth: 5,#}
         };
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
         chart.draw(data, options);
@@ -118,4 +121,3 @@ buy
 
 
 {% endblock %}
-

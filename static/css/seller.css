@@ -1,41 +1,74 @@
-#grimwrap {
+/*#grimwrap {*/
+/*    display: flex;*/
+/*	flex-direction: row;*/
+/*    justify-content: center;*/
+/*}*/
+#imgwrap{
+        margin-top: 20px;
     display: flex;
-	flex-direction: row;
-    justify-content: center;
+    flex-wrap: wrap;
+    width: 1300px;
+    justify-content: flex-start;
+    margin: auto;
 }
-
 #imgbox{
-	margin-right: 20px;
-	border: #9f9f9f 0.5px solid;
-    width: 20vw;
-    height: 25vw;
-    border-radius: 10px;
-    overflow: hidden;
+	/*margin-right: 20px;*/
+	/*border: #9f9f9f 0.5px solid;*/
+    /*width: 20vw;*/
+    /*height: 25vw;*/
+    /*border-radius: 10px;*/
+    /*overflow: hidden;*/
+border-radius: 10px;
+    border: 1px solid lightgray;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: 100%;
 }
 img.main_img {
-    width: 21vw;
-    height: 21vw;
-    border-radius: 10px;
-    margin-left: -10px;
+    /*width: 21vw;*/
+    /*height: 21vw;*/
+    /*border-radius: 10px;*/
+    /*margin-left: -10px;*/
+    width: 260px;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 div#imginfo {
+    /*display: flex;*/
+    /*font-size: 0.8rem;*/
+    /*justify-content: space-between;*/
+    /*padding: 0 10px 0 10px;*/
     display: flex;
-    font-size: 0.8rem;
     justify-content: space-between;
-    padding: 0 10px 0 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+#imginfo p {
+    margin: 0;
 }
 p.tab_title {
     font-size: 1.5rem;
     font-weight: 700;
 }
-div#imginfo p {
-    margin: 0;
-}
+
 div#info_left {
+    display: flex;
+    margin: 1.7% 1% 1% 1%;
+}
+.info_left_text {
     text-align: left;
+    margin-left: 5px;
+}
+.profile_aa{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
 }
 div#info_right {
-    text-align: right;
+    margin: 1% 1% 1% 1%;
 }
 ul.tabs{
 	margin: 0px;
@@ -66,6 +99,17 @@ ul.tabs li.current{
 .tab-content.current{
 	display: inherit;
 }
+
+#imgbox{
+    cursor: pointer;
+}
+#imgbox:hover {
+    box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+    -webkit-transform:scale(1.02);     /*  크롬 */
+    transition: all 0.1s ease 0s;
+}
+
+
 
 .base_content {
     text-align: center;
@@ -104,7 +148,7 @@ div#info_profile {
 p#nickname {
     font-size: 2.5rem;
     font-weight: 900;
-	margin-bottom: 0px;
+	margin-bottom: 30px;
 }
 div#info_trading {
     justify-content: center;
@@ -136,3 +180,56 @@ div#info_trading {
 }
 
 /*프로필수정팝업*/
+dialog#info_edit {
+    width: 400px;
+    height: 300px;
+    border: none;
+
+}
+div#edit_wrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+.user_edit {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 70px;
+}
+
+
+p.pop_p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+textarea.edit_input {
+    border: none;
+    border-bottom: 2px solid cadetblue;
+    text-align: center;
+    width: 130px;
+    margin-right: 53px;
+    height: 20px;
+    font-size: 17px;
+}
+
+input.edit_input {
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid cadetblue;
+    width: 130px;
+    height: 30px;
+    margin-right: 53px;
+    font-size: 17px;
+}
+
+
+.edit_sale {
+    margin: 10px 0 15px 0;
+}
+label {
+    font-size: 20px;
+    font-weight: bold;
+}
