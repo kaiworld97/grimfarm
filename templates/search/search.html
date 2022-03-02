@@ -22,11 +22,19 @@ search
 
     {% if error %}
         <div class = 'noresult_wrap'>
-        <p class ='count_item'>{{ all }} items</p>
-        <div class='noresult'>
-         <h1>No items found for this search</h1>
-         <button  onclick="location.href='/'">Back to main</button>
+            <p class ='count_item'>{{ all }} items</p>
+            <div class='noresult'>
+             <h1>No items found for this search</h1>
+             <button  onclick="location.href='/'">Back to main</button>
+            </div>
         </div>
+        <div class = 'check'>
+            <li>
+                Make sure it's not a spelling.
+            </li>
+            <li>
+                Try a simpler search by typing.
+            </li>
         </div>
     {% else %}
 <div class = 'allwrap'>
@@ -37,9 +45,9 @@ search
 </div>
     <div class = 'wrap' >
          {% for drawing in page_obj %}
-        <article id="content" class = 'box' onclick="location.href='/detail/{{ drawing.owner.pk }}/{{ drawing.pk }}'">
-                <img src="{{ drawing.img }}" alt="이미지">
-            <div class = 'post'>
+        <article id="content" class = 'box' >
+                <img src="{{ drawing.img }}" alt="이미지" onclick="location.href='/detail/{{ drawing.owner.pk }}/{{ drawing.pk }}'">
+            <div class = 'post'onclick="location.href='/seller/{{ drawing.owner.pk }}'">
 
                 <div class = 'post_left'>
                     <img src="{{ drawing.owner.img }}" class='profile_aa'>
@@ -97,9 +105,9 @@ window.onscroll = function() {
              console.dir(data)
             page += 1
             setTimeout(()=>{content.innerHTML += data.map(
-            	obj=>`<article id="content" class = 'box' onclick="location.href='/detail/${obj.owner_pk}/${obj.pk}'">
-                <img src="${obj.img}" alt="이미지" >
-            <div class = 'post'>
+            	obj=>`<article id="content" class = 'box' >
+                <img src="${obj.img}" alt="이미지" onclick="location.href='/detail/${obj.owner_pk}/${obj.pk}'">
+            <div class = 'post' onclick="location.href='/seller/${obj.owner_pk}'">
                 <div class = 'post_left'>
                     <img src="${obj.proimg}" class='profile_aa'>
                     <div>

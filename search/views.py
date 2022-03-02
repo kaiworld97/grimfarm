@@ -41,6 +41,7 @@ def search(request):
 
                 return JsonResponse(aa, status=200, safe=False)
         if len(post_list) == 0:
+
             return render(request, 'search/search.html', {'error': search, 'search': search, 'all': len(post_list)})
 
         ctx = {'page_obj': page_obj, 'all': len(post_list), 'search': search}
