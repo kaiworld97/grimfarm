@@ -8,8 +8,8 @@
 }
 
 .img_container img {
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 512px;
+    max-height: 512px;
 }
 
 #style_box {
@@ -55,8 +55,8 @@
 }
 
 .empty_div {
-    width: 500px;
-    height: 500px;
+    width: 512px;
+    height: 512px;
     border: 0;
     border-radius: 20px;
     background-color: #cfcfcff0;
@@ -117,8 +117,8 @@
 }
 
 .input_img_wrapper, .style_img_wrapper {
-    width: 500px;
-    height: 500px;
+    width: 512px;
+    height: 512px;
     align-items: center;
     justify-content: center;
 }
@@ -214,10 +214,9 @@
 }
 
 .move {
-    background: red;
     position: relative;
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 512px;
+    max-height: 512px;
 }
 
 .move:nth-child(1) {
@@ -269,7 +268,7 @@
 .output_btns {
     margin: 7% auto 0;
     display: none;
-    width: 500px;
+    width: 512px;
     justify-content: space-evenly;
 }
 
@@ -308,8 +307,8 @@
 #output img {
     animation: light 10s infinite;
     -webkit-animation: light 10s infinite;
-    max-height: 500px;
-    max-width: 500px;
+    max-height: 512px;
+    max-width: 512px;
 }
 
 @keyframes light {
@@ -466,8 +465,8 @@
 
 /*그림판*/
 .canvas {
-    width: 500px;
-    height: 500px;
+    width: 512px;
+    height: 512px;
     background-color: white;
     border-radius: 20px;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -527,7 +526,7 @@
     display: none;
     justify-content: space-around;
     align-items: center;
-    height: 500px;
+    height: 512px;
 }
 
 #output_wrapper form {
