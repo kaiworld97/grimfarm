@@ -20,7 +20,7 @@ def sign_up(request):
     ]
     test_img = random.sample(img_list, 1)[0]
     print(test_img)
-    # 그게 아니면 회원가입 페이지 보여주면 된다
+
     if request.method == 'GET':  # 페이지 접근
         user = request.user.is_authenticated  # 로그인 되어 있는지
         if user:
@@ -28,52 +28,54 @@ def sign_up(request):
         else:
             return render(request, 'user/sign_up.html', test_img)
 
-    if request.method == 'POST':  # 회원가입 페이지로 연결
+    if request.method == 'POST':  # 회원정보 입력 받았을 때
 
+        user_img = request.FILES.get('select-img', '')
+        print(user_img)
         username = request.POST.get('email', '')
         password = request.POST.get('password', '')
         password2 = request.POST.get('password2', '')
         nickname = request.POST.get('nickname', '')
 
         if not validate_email(username):
-
             return render(request, 'user/sign_up.html', {'error': '정확한 이메일 양식으로 작성해주세요',
-                                                         'title':test_img['title'],
-                                                         'url':test_img['url']})
+                                                         'title': test_img['title'],
+                                                         'url': test_img['url']})
 
         if not validate_password(password):
             return render(request, 'user/sign_up.html',
                           {'error': '8자 이상, 특수문자를 포함 해야합니다',
                            'title': test_img['title'],
                            'url': test_img['url']
-            })
+                           })
 
         if password != password2:
             return render(request, 'user/sign_up.html', {'error': '입력하신 비밀번호가 일치하지 않습니다',
-                           'title': test_img['title'],
-                           'url': test_img['url']
-            })
+                                                         'title': test_img['title'],
+                                                         'url': test_img['url']
+                                                         })
 
         if username == '' or password == '' or nickname == '':
             return render(request, 'user/sign_up.html', {'error': '빈 칸이 존재합니다',
-                           'title': test_img['title'],
-                           'url': test_img['url']
-            })
+                                                         'title': test_img['title'],
+                                                         'url': test_img['url']
+                                                         })
 
         exist_user = get_user_model().objects.filter(username=username)
         exist_nick = get_user_model().objects.filter(nickname=nickname)
 
         if len(exist_user) > 0 or len(exist_nick) > 0:
             return render(request, 'user/sign_up.html', {'error': '이미 가입 완료 된 이메일 또는 존재하는 닉네임 입니다',
-                           'title': test_img['title'],
-                           'url': test_img['url']
-            })
+                                                         'title': test_img['title'],
+                                                         'url': test_img['url']
+                                                         })
         else:
             answer = request.POST.get('answer')
             user_answer = request.POST.get('user_answer')
 
             if answer == user_answer:
                 UserModel.objects.create_user(
+                    img=user_img,
                     username=username,
                     password=password,
                     nickname=nickname,
@@ -81,9 +83,9 @@ def sign_up(request):
                 return redirect('/sign_in')
             else:
                 return render(request, 'user/sign_up.html', {'error': '정답이 아닙니다. 다시 진행해주세요',
-                           'title': test_img['title'],
-                           'url': test_img['url']
-            })
+                                                             'title': test_img['title'],
+                                                             'url': test_img['url']
+                                                             })
 
 
 def sign_in(request):
@@ -101,7 +103,10 @@ def sign_in(request):
         me = auth.authenticate(request, username=username, password=password)
         if me is not None:
             auth.login(request, me)
-            return redirect('/')
+            response = redirect('/')
+            nickname = UserModel.objects.get(username=username).nickname
+            response.set_cookie(key='nickname', value=nickname)
+            return response
         else:
             return render(request, 'user/sign_in.html', {'error': '이메일 혹은 비밀번호를 확인해주세요'})
 
@@ -109,7 +114,9 @@ def sign_in(request):
 @login_required
 def sign_out(request):
     auth.logout(request)
-    return redirect('/')
+    response = redirect(request.headers['Referer'])
+    response.set_cookie(key='nickname', value='')
+    return response
 
 
 def validate_email(value):
@@ -136,33 +143,3 @@ def validate_password(value):
     # (?=.*\d) > \d 정수 검색 = 0~9 가능 하다는 뜻
     # (?=.*[$@$!%*#?&]) > [] 내의 특수문자들만 비밀번호로 사용가능 >> 이것도 틀리는 경우 오류 발생 이유를 출력해주긴 해야함
     # [A-Za-z\d$@$!%*#?&]{8,} > 앞의 값들 중 8개 이상 일치해야함 즉 8글자 이상의 비밀번호 입력해야함.
-
-
-def validate_human(request):
-    test_img = request.POST.get('user')
-    # get으로 static 이미지 불러오기
-
-    return render
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

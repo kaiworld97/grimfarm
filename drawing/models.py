@@ -12,7 +12,7 @@ class DrawingModel(models.Model):
     title = models.CharField(max_length=256)
     description = models.CharField(max_length=256, default='')
     img = models.URLField()
-    category = models.CharField(max_length=30, default='')
+    category = models.CharField(max_length=30, default='save')
     owner = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='%(class)s_owner')
     buy_price = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)

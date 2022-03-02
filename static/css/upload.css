@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1%;
+    margin: 1% 4%;
     justify-content: center;
 }
 
@@ -90,9 +90,16 @@
 
 #img_options {
     display: flex;
-    margin: 2% 0 0 0;
+    margin: 3% 0 1% 0;
     width: 70%;
     justify-content: space-evenly;
+}
+.style_wrapper{
+    height: 150px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .label_select:hover {
@@ -513,13 +520,14 @@
 
 .move_left_output {
     transition: 2s;
-    transform: translateX(-318px);
+    transform: translateX(-320px);
 }
 
 #output_wrapper {
     display: none;
     justify-content: space-around;
     align-items: center;
+    height: 500px;
 }
 
 #output_wrapper form {
@@ -567,13 +575,13 @@
 }
 
 #output_wrapper input[type=radio]:checked ~ label[title=save]::after {
-    background: #00C896;
+    background: #9c9cef;
     -webkit-clip-path: circle(100%);
     clip-path: circle(100%);
 }
 
 #output_wrapper input[type=radio]:checked ~ label[title=sell]::after {
-    background: #001D74;
+    background: #9c9cef;
     -webkit-clip-path: circle(100%);
     clip-path: circle(100%);
 }
@@ -611,11 +619,11 @@
 }
 
 .radio label[title=save] {
-    color: #85ffe0;
+    color: #E3E0F3;
 }
 
 .radio label[title=sell] {
-    color: #6489f7;
+    color: #E3E0F3;
 }
 
 /*Copyright (c) 2022 by Jake (https://codepen.io/Jake_Woods/pen/jgYxmZ)*/

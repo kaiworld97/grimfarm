@@ -15,52 +15,38 @@ detail
 {#자바스크립트 파일 넣는 곳#}
 {% block js %}
 <script  type="text/javascript" src="{% static '/js/detail.js' %}"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-{#<script type="text/javascript" src="https://www.google.com/jsapi"></script>#}
-{#<script  type="text/javascript">#}
-{#      google.load("visualization", "1", {packages:["corechart"]});#}
-{#      google.setOnLoadCallback(drawChart);#}
-{#      function drawChart() {#}
-{##}
-{#        var prices = [#}
-{#          ['Date', 'Price'],#}
-{#            ['1',  290],#}
-{#            ['2',  300],#}
-{#            ['3', 320]#}
-{#        ]#}
-{#        var data = google.visualization.arrayToDataTable(#}
-{#            prices#}
-{#        );#}
-{#        var options = {#}
-{#          title: 'Price Chart'#}
-{#        };#}
-{#        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));#}
-{#        chart.draw(data, options);#}
-{#      }#}
-{#</script>#}
 {% endblock %}
 
 {#메인 컨텐츠 들어가는 곳#}
 {% block content %}
 <div id="img_detail_box">
-    <div id="selleing_img">
-        img drawing_id :1
+
+    <div id="selling_img">
+        <img class="sales_img" src="{{ drawing_img.img }}">
+
     </div>
     <div id="img_info_area">
 
-            <p id="img_title">TITLE</p>
+            <p id="img_title">{{ drawing_img.title }}</p>
+
             <button id="btn1" onclick="open_modal();">settings</button>
             <p class="img_detail">Owned by {{ owner.nickname }}</p>
-            <p class="img_detail">Created by author: {{ drawing.author_id }}</p>
-            <p class="img_price">Price : {{ drawing.buy_price }}</p>
+            <p class="img_detail">Created by {{ drawing.author.nickname }}</p>
+            <p class="img_price">Price : {{ drawing_img.buy_price }}</p>
             <p class="img_detail">Description</p>
-            <p id="img_desc">{{ drawing.description }}</p>
+            <p id="img_desc">{{ drawing_img.description }}</p>
+
             <div id="price_chart">
                 <p class="img_detail">Price Chart</p>
-                price_list: {{ price_list }}
 
+                        price_list:{{ price_list|safe }}
+{#                        len: {{ price_list|length }}#}
+            {% if price_list|length > 1 %}
+            <div id="chart_div"></div>
+            {% else %}
+                <p style="color: red">거래내역이 없습니다</p>
+            {% endif %}
 
-                <div id="chart_div"></div>
 
 
         </div>
@@ -73,17 +59,32 @@ detail
 
 </div>
 
+{#    디테일페이지 수정 팝업#}
     <dialog id="news_detail" class="modal modal_box">
 
         <button onclick="close_modal()">&times;</button>
         <form method="POST">
         {% csrf_token %}
-{#        <input name="title" value="{{ drawing.title }}">#}
-            <input name="title" value="Title">
-            <input name="desc" value="{{ drawing.description }}">
-            <input name="price" value="{{ drawing.buy_price }}">
-            <label for="input-married">On sale</label>
-            <input id="input-married" name="status" type="checkbox"/>
+            <div id="detail_modal">
+                <h3>{{ drawing_img.title }}</h3>
+                <div>
+                Description: <input name="desc" value="{{ drawing_img.description }}">
+                 </div>
+                <div>
+                Price: <input name="price" value="{{ drawing_img.buy_price }}">
+                </div>
+                {% if drawing_img.category == 'on' %}
+                <div>
+                <label for="input-married">On sale</label>
+                <input id="input-married" name="status" type="checkbox" checked>
+                </div>
+                {% else %}
+                <div>
+                <label for="input-married">On sale</label>
+                <input id="input-married" name="status" type="checkbox">
+                </div>
+                {% endif %}
+            </div>
 
             <button type="submit" >수정하기</button>
         </form>
@@ -94,14 +95,14 @@ detail
 <script  type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
+      var prices = {{ price_list|safe }}
+
+
+          console.log(typeof(prices))
       function drawChart() {
-
-        var prices = "{{ price_list }}"
-          console.log(prices)
-        var data = google.visualization.arrayToDataTable(
-          prices
-
-        );
+       var data = google.visualization.arrayToDataTable(
+            prices
+            );
         var options = {
           title: 'Price Chart'
         };
