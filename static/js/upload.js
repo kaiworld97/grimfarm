@@ -110,7 +110,7 @@ function posting() {
         enctype: 'multipart/form-data',
         success: function (response) {
             console.log(response['file_url'])
-            document.getElementById('output_img').src =
+            document.getElementById('output_img').src = response['file_url']
             document.getElementById('output_url').value = response['file_url']
         }
     });
