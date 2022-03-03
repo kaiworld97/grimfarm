@@ -1,4 +1,4 @@
-function open_modal(){
+function open_buy_modal(){
     console.log('hi')
     document.getElementById(`buy_now`).showModal();
 }
@@ -10,7 +10,7 @@ $(function(){
         });
 
         // .modal안에 button을 클릭하면 .modal닫기
-        $(".modal button").click(function(){
+        $(".buy_modal button").click(function(){
             $("#buy_now").hide();
             location.reload();
             console.log('refresh')

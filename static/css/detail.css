@@ -1,11 +1,9 @@
-.base_content {
-    height: 120vh;
 
-}
 /*그림판매정보박스*/
 div#detail_wrap {
     display: flex;
     flex-direction: column;
+    margin-bottom: 10%;
 }
 
 div#img_detail_box {
@@ -15,6 +13,7 @@ div#img_detail_box {
     margin: 100px 0 50px 0;
     height: 450px;
 }
+
 div#selling_img {
     max-width: 360px;
     max-height: 440px;
@@ -23,26 +22,31 @@ div#selling_img {
     border-radius: 10px;
     margin-left: 120px;
 }
+
 img.sales_img {
     object-fit: cover;
     width: 100%;
     height: 100%;
 
 }
+
 div#img_info_area {
     text-align: left;
     margin-left: 70px;
     max-height: 440px;
     max-width: 300px;
 }
+
 p#img_title {
     font-size: 2rem;
     font-weight: bolder;
 }
+
 p.img_price {
     font-size: 20px;
     font-weight: bold;
 }
+
 p#img_desc {
     width: 33vw;
     margin-left: 1vw;
@@ -57,54 +61,60 @@ p#img_desc {
     justify-content: start;
     margin-bottom: 10px;
 }
+
 .deal_item_wrap {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     margin-bottom: 15px;
 }
+
 .deal_head_items1 {
     width: 60px;
     margin-left: 75px;
 }
+
 .deal_head_items2 {
     width: 60px;
     margin-left: 70px;
 }
+
 .deal_head_items3 {
     width: 60px;
     margin-left: 65px;
 }
+
 .deal_head_items4 {
     width: 60px;
     margin-left: 55px;
 }
+
 .deal_head_items5 {
     width: 60px;
     margin-left: 135px;
 }
 
 
-
-
-
-
 .deal_items1 {
     width: 70px;
     margin-left: 70px;
 }
+
 .deal_items2 {
     width: 50px;
     margin-left: 70px;
 }
+
 .deal_items3 {
     width: 90px;
     margin-left: 55px;
 }
+
 .deal_items4 {
     width: 90px;
     margin-left: 25px;
 }
+
 .deal_items5 {
     width: 220px;
     margin-left: 35px;
@@ -116,6 +126,7 @@ p.activity_title {
     margin-left: 30px;
     font-weight: bold;
 }
+
 p.chart_title {
     text-align: left;
     font-size: 20px;
@@ -124,31 +135,36 @@ p.chart_title {
 }
 
 
-
 /*모달팝업*/
 div#detail_modal {
     display: flex;
     flex-direction: column;
 }
+
 dialog#news_detail {
     width: 350px;
     height: 350px;
-    border: none;
+    border: 0;
+    border-radius: 20px;
 }
+
 div#detail_modal div {
     margin-top: 10px;
     margin-bottom: 15px;
 }
+
 .detail_edit {
     display: flex;
     justify-content: space-between;
     margin: 35px;
 }
+
 p.edit_p {
     font-size: 17px;
     font-weight: bold;
     margin: 0 25px;
 }
+
 div#sale_cb {
     margin: 30px;
 }
@@ -161,21 +177,54 @@ input.info_input {
     font-size: 17px;
     height: 25px;
 }
+
 .edit_sale {
     margin: 10px 0 15px 0;
 }
+
 label {
     font-size: 20px;
     font-weight: bold;
 }
+
 input[id="input-sale"] + label {
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	border: 2px solid #bcbcbc;
-	cursor: pointer;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #bcbcbc;
+    cursor: pointer;
 }
+
 p.img_price {
     font-size: 22px;
     font-weight: bold;
+}
+
+#detail_wrap button {
+    padding: 3%;
+}
+
+.modal button {
+    padding: 3%;
+}
+
+dialog#buy_now {
+    width: 300px;
+    height: 300px;
+    border: none;
+    border-radius: 20px;
+}
+
+p.buy_title {
+    font-size: 30px;
+    font-weight: bold;
+}
+p.buy_p {
+    font-size: 20px;
+}
+button.buy_btn {
+    margin-top: 35px;
+}
+#buy_now button {
+    padding: 3%;
 }

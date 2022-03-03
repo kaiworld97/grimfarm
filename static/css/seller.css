@@ -3,39 +3,39 @@
 /*	flex-direction: row;*/
 /*    justify-content: center;*/
 /*}*/
-#imgwrap{
-        margin-top: 20px;
+#imgwrap {
     display: flex;
     flex-wrap: wrap;
-    width: 1300px;
-    justify-content: flex-start;
-    margin: auto;
+    justify-content: center;
+    margin: 0 7%;
 }
-#imgbox{
-	/*margin-right: 20px;*/
-	/*border: #9f9f9f 0.5px solid;*/
+
+#imgbox {
+    /*margin-right: 20px;*/
+    /*border: #9f9f9f 0.5px solid;*/
     /*width: 20vw;*/
     /*height: 25vw;*/
     /*border-radius: 10px;*/
     /*overflow: hidden;*/
-border-radius: 10px;
+    border-radius: 10px;
     border: 1px solid lightgray;
     margin: 2%;
-    display: flex;
-    flex-direction: column;
-    width: 260px;
-    height: 100%;
+    width: 300px;
+    height: 370px;
 }
+
 img.main_img {
     /*width: 21vw;*/
     /*height: 21vw;*/
     /*border-radius: 10px;*/
     /*margin-left: -10px;*/
-    width: 260px;
-    height: 100%;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
+
 div#imginfo {
     /*display: flex;*/
     /*font-size: 0.8rem;*/
@@ -48,9 +48,11 @@ div#imginfo {
     align-items: center;
     padding: 2%;
 }
+
 #imginfo p {
     margin: 0;
 }
+
 p.tab_title {
     font-size: 1.5rem;
     font-weight: 700;
@@ -60,57 +62,61 @@ div#info_left {
     display: flex;
     margin: 1.7% 1% 1% 1%;
 }
+
 .info_left_text {
     text-align: left;
     margin-left: 10px;
 }
-.profile_aa{
+
+.profile_aa {
     width: 40px;
     height: 40px;
     border-radius: 20px;
 }
+
 div#info_right {
     margin: 1% 1% 1% 1%;
 }
-ul.tabs{
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
+
+ul.tabs {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
 }
 
-ul.tabs li{
-  display: inline-block;
-	/*background: rgba(213, 236, 255, 0.7);*/
-	color: #b2b2b2;
-	padding: 10px 15px;
-	cursor: pointer;
+ul.tabs li {
+    display: inline-block;
+    /*background: rgba(213, 236, 255, 0.7);*/
+    color: #b2b2b2;
+    padding: 10px 15px;
+    cursor: pointer;
 }
 
-ul.tabs li.current{
-	/*background: rgba(213, 236, 255, 0.7);*/
-	color: #222;
+ul.tabs li.current {
+    /*background: rgba(213, 236, 255, 0.7);*/
+    color: #222;
     font-weight: 900;
 }
 
-.tab-content{
-  display: none;
-	/*background: rgba(213, 236, 255, 0.7);*/
-	padding: 12px;
+.tab-content {
+    display: none;
+    /*background: rgba(213, 236, 255, 0.7);*/
+    padding: 12px;
 }
 
-.tab-content.current{
-	display: inherit;
+.tab-content.current {
+    display: inherit;
 }
 
-#imgbox{
+#imgbox {
     cursor: pointer;
 }
+
 #imgbox:hover {
     box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
-    -webkit-transform:scale(1.02);     /*  크롬 */
+    -webkit-transform: scale(1.02); /*  크롬 */
     transition: all 0.1s ease 0s;
 }
-
 
 
 .base_content {
@@ -123,7 +129,7 @@ ul.tabs li.current{
 #background_profile {
     width: 100vw;
     height: 20vh;
-	background-color: #dadada;
+    background-color: #dadada;
 }
 
 div#pic_profile {
@@ -137,12 +143,14 @@ div#pic_profile {
     margin-top: 14vh;
     margin-left: 46vw;
 }
+
 img.profile_img {
     width: 7vw;
     height: 7vw;
     object-fit: cover;
     border-radius: 50%;
 }
+
 div#info_profile {
     padding-top: 6vh;
 }
@@ -150,31 +158,37 @@ div#info_profile {
 p#nickname {
     font-size: 2.5rem;
     font-weight: 900;
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
+
 div#info_trading {
     justify-content: center;
     display: flex;
 }
+
 .detail_trading {
     width: 8vw;
 }
+
 .detail_trading span {
     font-size: 1.5rem;
     font-weight: 900;
 }
+
 div#description {
     width: 25vw;
     margin: auto;
     margin-top: 3vh;
     color: #767676;
 }
+
 .tap_container {
     margin-top: 10vh;
 }
+
 div#info_trading {
     border: 1px solid #dadada;
-    width: 30vw;
+    width: 20vw;
     margin: auto;
     margin-top: 40px;
     border-radius: 5px;
@@ -188,12 +202,14 @@ dialog#info_edit {
     border: none;
 
 }
+
 div#edit_wrap {
     display: flex;
     flex-direction: column;
     margin-top: 50px;
     margin-bottom: 40px;
 }
+
 .user_edit {
     display: flex;
     justify-content: space-between;
@@ -207,6 +223,7 @@ p.pop_p {
     font-weight: bold;
     margin: 0;
 }
+
 textarea.edit_input {
     border: none;
     border-bottom: 2px solid cadetblue;
@@ -231,6 +248,7 @@ input.edit_input {
 .edit_sale {
     margin: 10px 0 15px 0;
 }
+
 label {
     font-size: 20px;
     font-weight: bold;

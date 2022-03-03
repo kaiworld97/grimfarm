@@ -51,17 +51,16 @@ def detail(request, owner_pk, drawing_pk):
         # 판매중 체크하면 category에 'on'으로 입력, 체크 안 할 시 'off'입력
         try:
             status = request.POST['status']
-            drawing_img.category = status
+            drawing_img.category = 'sell'
         except MultiValueDictKeyError:
-            drawing_img.category = 'off'
-        drawing_img.created_at = datetime.date.today()
+            drawing_img.category = 'save'
         drawing_img.save()
-        return redirect('seller', owner.pk)
+        return redirect(f'/detail/{owner_pk}/{drawing_pk}')
 
     return render(request, 'market/detail.html', {'drawing_img':drawing_img, 'price_list':price_list,  'market':market, 'owner':owner})
 
 
-@login_required
+# @login_required
 def buy(request, drawing_pk, owner_pk):
     # drawing = DrawingModel.objects.get(pk=owner_pk)
     market = MarketModel.objects.filter(drawing_id=drawing_pk)
@@ -92,6 +91,7 @@ def buy(request, drawing_pk, owner_pk):
         # 구매자 포인트 차감, 판매자 포인트 증가
         user.point = user.point - drawing_img.buy_price
         owner.point = owner.point + drawing_img.buy_price
+        user.img = drawing_img.img
         # print('owner.point', owner.point)
         # print('user.point', user.point)
         owner.save()
@@ -99,6 +99,6 @@ def buy(request, drawing_pk, owner_pk):
         drawing_img.save()
         add_market.save()
 
-        return redirect('seller', owner.pk)
+        return redirect(f'/detail/{user.id}/{drawing_pk}')
 
     return render(request, 'market/buy.html', {'market':market, 'owner':owner, 'drawing_img':drawing_img, 'price_list':price_list})

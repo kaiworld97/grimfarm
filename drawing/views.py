@@ -19,6 +19,7 @@ def upload(request):
         drawing_model.author = author
         drawing_model.save()
         author.point += 100
+        author.img = request.POST.get('url')
         author.save()
         url_pk = DrawingModel.objects.filter(owner=author, title=request.POST.get('title'), )[0].id
         return redirect(f'/detail/{author.id}/{url_pk}')

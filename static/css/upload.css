@@ -519,7 +519,7 @@
 
 .move_left_output {
     transition: 2s;
-    transform: translateX(-320px);
+    transform: translateX(-283px);
 }
 
 #output_wrapper {

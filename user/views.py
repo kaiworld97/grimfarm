@@ -100,7 +100,7 @@ def sign_in(request):
         me = auth.authenticate(request, username=username, password=password)
         if me is not None:
             auth.login(request, me)
-            return redirect('/')
+            return redirect(request.headers['Referer'])
         else:
             return render(request, 'user/sign_in.html', {'error': '이메일 혹은 비밀번호를 확인해주세요'})
 

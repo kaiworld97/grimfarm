@@ -36,7 +36,7 @@ buy
             <p id="img_desc">{{ drawing_img.description }}</p>
             <p>Sales Status: {{ drawing_img.category }}</p>
                 {% if drawing_img.category == "on" or drawing_img.category == "sell" %}
-                    <button class="buy_btn" onclick="open_modal()">Buy Now</button>
+                    <button class="buy_btn" onclick="open_buy_modal()">Buy Now</button>
                 {% endif %}
 
     </div>
@@ -79,10 +79,10 @@ buy
 
 
 {#    구매하기 팝업#}
-    <dialog id="buy_now" class="modal modal_box">
+    <dialog id="buy_now" class="buy_modal buy_modal_box">
 
-        <button onclick="close_modal()">&times;</button>
-        <form method="POST">
+        <button onclick="close_buy_modal()">&times;</button>
+        <form method="POST" action="/buy/{{ owner.id }}/{{ drawing_img.id }}" name="buy">
             {% csrf_token %}
             <p class="buy_title">{{ drawing_img.title  }}</p>
              <p class="buy_p">Price: {{ drawing_img.buy_price }}</p>

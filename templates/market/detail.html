@@ -29,13 +29,17 @@ detail
     <div id="img_info_area">
 
             <p id="img_title">{{ drawing_img.title }}</p>
-
+            {% if user.username == drawing_img.owner.username %}
             <button id="btn1" onclick="open_modal();">settings</button>
+            {% endif %}
             <p class="img_detail">Owned by {{ owner.nickname }}</p>
             <p class="img_detail">Created by {{ drawing_img.author.nickname }}</p>
             <p class="img_price">Price : {{ drawing_img.buy_price }}</p>
             <p class="img_detail">Description</p>
             <p id="img_desc">{{ drawing_img.description }}</p>
+                {% if drawing_img.category == "sell" and user.username != drawing_img.owner.username and user.is_authenticated%}
+                    <button class="buy_btn" onclick="open_buy_modal()">Buy Now</button>
+                {% endif %}
     </div>
 </div>
 
@@ -81,7 +85,7 @@ detail
 {#    디테일페이지 수정 팝업#}
     <dialog id="news_detail" class="modal modal_box">
 
-        <button onclick="close_modal()">&times;</button>
+
         <form method="POST">
         {% csrf_token %}
             <div id="detail_modal">
@@ -96,7 +100,7 @@ detail
                 </div>
             </div>
 {#                status: {{ drawing_img.category  }}#}
-                {% if drawing_img.category == "on" or drawing_img.category == "sell" %}
+                {% if drawing_img.category == "sell" %}
                     <div id="sale_cb">
                     <label for="input-sale">On sale</label>
                     <input id="input-sale" name="status" type="checkbox" checked>
@@ -112,6 +116,25 @@ detail
 
 
             <button type="submit" >수정하기</button>
+            <button type="button" onclick="close_modal()">취소</button>
+        </form>
+    </dialog>
+
+
+    {#    구매하기 팝업#}
+
+    <dialog id="buy_now" class="buy_modal buy_modal_box">
+
+
+        <form method="POST" action="/buy/{{ owner.id }}/{{ drawing_img.id }}" name="buy">
+            {% csrf_token %}
+            <p class="buy_title">{{ drawing_img.title  }}</p>
+             <p class="buy_p">Price: {{ drawing_img.buy_price }}</p>
+            <p class="buy_p">My Point: {{ user.point  }}</p>
+
+{#            <p>거래후잔여 Point: {{ user.point |add: "2" }}</p>#}
+            <button class="buy_btn" type="submit" >구입하기</button>
+            <button type="button" onclick="close_buy_modal()">취소</button>
         </form>
     </dialog>
 
