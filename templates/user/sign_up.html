@@ -27,28 +27,27 @@
         <div class="container-signup">
             <form method="POST" action="/sign_up/" name="sign_up">
                 {% csrf_token %}
-                <div class="type-box">
-                    <p for="email">Email</p>
-                    <input name="email" placeholder="Email" autocomplete="off" required>
-                    <p for="password">Password</p>
-                        <input type="password" name="password" placeholder="Password" autocomplete="off" required>
-                    <p for="password2">Re-enter Password</p>
-                    <input type="password" name="password2" placeholder="Re-enter password" autocomplete="off" required>
-                    <p for="Nickname">Nickname</p>
-                    <input name="nickname" placeholder="Nickname" autocomplete="off" required>
-                    <div class="test_image">
-                        <img src="{{ url }}">
-                    </div>
+                <div class="label_wrapper">
+                    <label for="email">Email</label>
                 </div>
+
+                <input name="email" autocomplete="off" required>
+                <div class="label_wrapper"><label for="password">Password</label></div>
+
+                <input type="password" name="password" autocomplete="off" required>
+                <div class="label_wrapper"><label for="password2">Re-enter Password</label></div>
+
+                <input type="password" name="password2" autocomplete="off" required>
+                <div class="label_wrapper"><label for="Nickname">Nickname</label></div>
+
+                <input name="nickname" autocomplete="off" required>
+                <img class="test_image" src="{{ url }}">
                 <input value="{{ title }}" style="display: none" name="answer">
-                <div class="answer">
-                    <p>그림에 존재하는 동물을 적어주세요</p>
-                    <input id="answer" name="user_answer" placeholder="'고양이' 혹은 '강아지'" required>
-                </div>
+                <label>그림에 존재하는 동물을 적어주세요</label>
+                <input id="answer" name="user_answer" placeholder="'고양이' 혹은 '강아지'" required>
                 <button type="submit">Create Account</button>
             </form>
-            <p></p>
-            <div>
+            <div class="help_a">
                 Already have an account?
                 <a href="/sign_in/">Sign In</a>
             </div>

@@ -37,20 +37,20 @@ search
 </div>
     <div class = 'wrap' >
          {% for drawing in page_obj %}
-             <article id="content" class = 'box' onclick="location.href='/detail/{{ drawing.owner.pk }}/{{ drawing.pk }}'">
-                <img src="{{ drawing.img }}" alt="이미지">
-            <div class = 'post'>
+        <article id="content" class = 'box' >
+                <img src="{{ drawing.img }}" alt="이미지" onclick="location.href='/detail/{{ drawing.owner.pk }}/{{ drawing.pk }}'">
+            <div class = 'post'onclick="location.href='/seller/{{ drawing.owner.pk }}'">
 
                 <div class = 'post_left'>
                     <img src="{{ drawing.owner.img }}" class='profile_aa'>
                     <div>
-                        <p>{{ drawing.owner.nickname }}</p>
                         <p>{{ drawing.title }}</p>
+                        <p>{{ drawing.owner.nickname }}</p>
                     </div>
 
                 </div>
                 <div class = 'post_right'>
-                    <p>{{ drawing.buy_price }}won</p>
+                    <p>{{ drawing.buy_price }} point</p>
                 </div>
             </div>
         </article>
@@ -97,18 +97,18 @@ window.onscroll = function() {
              console.dir(data)
             page += 1
             setTimeout(()=>{content.innerHTML += data.map(
-            	obj=>`<article id="content" class = 'box' onclick="location.href='/detail/${obj.owner_pk}/${obj.pk}'">
-                <img src="${obj.img}" alt="이미지" >
-            <div class = 'post'>
+            	obj=>`<article id="content" class = 'box' >
+                <img src="${obj.img}" alt="이미지" onclick="location.href='/detail/${obj.owner_pk}/${obj.pk}'">
+            <div class = 'post' onclick="location.href='/seller/${obj.owner_pk}'">
                 <div class = 'post_left'>
                     <img src="${obj.proimg}" class='profile_aa'>
                     <div>
-                        <p>${obj.owner}</p>
                         <p>${obj.title}</p>
+                        <p>${obj.owner}</p>
                     </div>
                 </div>
                 <div class = 'post_right'>
-                    <p>${obj.buy_price}won</p>
+                    <p>${obj.buy_price} point</p>
                 </div>
             </div>
         </article>`

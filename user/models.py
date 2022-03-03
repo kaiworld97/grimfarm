@@ -10,7 +10,7 @@ class UserModel(AbstractUser):
 
     nickname = models.CharField(max_length=30)
     img = models.URLField(default='https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EC%B9%B8%EB%94%98%20%ED%9B%84%EC%B6%941.png')
-    point = models.IntegerField(default=0)
+    point = models.IntegerField(default=1000)
     bio = models.CharField(max_length=256, default='')
 
 

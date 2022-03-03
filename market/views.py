@@ -14,7 +14,7 @@ from user.models import UserModel
 def main(request):
     return render(request, 'market/main.html')
 
-@login_required()
+# @login_required()
 def seller(request, pk):
     #own:판매자가 가지고 있는 모든 그림 불러오기
     drawings = DrawingModel.objects.filter(owner_id=pk)
@@ -31,7 +31,7 @@ def seller(request, pk):
     return render(request, 'market/seller.html', {'drawings':drawings, 'owner':owner})
 
 
-@login_required()
+# @login_required()
 def detail(request, owner_pk, drawing_pk):
     # drawing = DrawingModel.objects.get(pk=owner_pk)
     market = MarketModel.objects.filter(drawing_id=drawing_pk)

@@ -45,6 +45,8 @@ div#imginfo {
     justify-content: space-between;
     font-weight: bold;
     font-size: 14px;
+    align-items: center;
+    padding: 2%;
 }
 #imginfo p {
     margin: 0;
@@ -60,7 +62,7 @@ div#info_left {
 }
 .info_left_text {
     text-align: left;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 .profile_aa{
     width: 40px;

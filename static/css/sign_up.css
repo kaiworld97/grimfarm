@@ -1,11 +1,12 @@
 .wrapper-signup {
     color: #555555;
-    margin-top: 30px;
     padding-bottom: 30px;
     width: 500px;
     height: 100%;
     border-radius: 20px;
-    border: 1px solid grey;
+    border: 0;
+    box-shadow: rgb(4 17 29 / 25%) 0px 0px 10px 0px;
+    margin: 3%;
 }
 
 .container-signup {
@@ -13,49 +14,42 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    margin: 0 auto;
 }
 
 .title {
     font-size: 30px;
     font-weight: bolder;
     font-style: normal;
-    margin-top: 20px;
-    margin-bottom: 15px;
+    margin: 7%;
 }
 
-.type-box {
+.container-signup form {
     width: 400px;
-}
-
-.type-box p {
-    text-align: left;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 50px;
-}
-
-.type-box input {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 50px;
-
-    width: 300px;
-    height: 30px;
-    border-radius: 13px;
-    border: 1px solid grey;
 }
 
-.test_image img {
+.container-signup form input {
+    width: 300px;
+    height: 30px;
+    border-radius: 20px;
+    border: 1px solid rgb(202 206 211);
+    margin: 5%;
+    padding: 2%;
+    padding-left: 5%;
+}
+
+.container-signup form button {
+    margin: 5%;
+    padding: 3%;
+}
+
+.test_image {
     width: 70%;
     border-radius: 20px;
-    margin-top: 5px;
+    margin: 5%;
 }
 
 .answer {
@@ -82,4 +76,10 @@
 button {
     padding: 3%;
 }
-
+.label_wrapper{
+    display: flex;
+    width: 300px;
+}
+.help_a a{
+    font-weight: bold;
+}

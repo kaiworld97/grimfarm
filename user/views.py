@@ -14,7 +14,7 @@ import re
 def sign_up(request):
     img_list = [
         {'title': '강아지',
-         'url': 'https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EB%94%94%ED%8F%B4%ED%8A%B8.jpeg'},
+         'url': 'https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EC%B9%B8%EB%94%98%20%EB%A3%A8%ED%82%A4.png'},
         {'title': '고양이',
          'url': 'https://raw.githubusercontent.com/kinghong97/grimfarm/master/static/img/%EC%B9%B8%EB%94%98%20%ED%9B%84%EC%B6%941.png'}
     ]
@@ -100,10 +100,7 @@ def sign_in(request):
         me = auth.authenticate(request, username=username, password=password)
         if me is not None:
             auth.login(request, me)
-            response = redirect('/')
-            nickname = UserModel.objects.get(username=username).nickname
-            response.set_cookie(key='nickname', value=nickname.encode('utf-8'))
-            return response
+            return redirect('/')
         else:
             return render(request, 'user/sign_in.html', {'error': '이메일 혹은 비밀번호를 확인해주세요'})
 
@@ -111,9 +108,7 @@ def sign_in(request):
 @login_required
 def sign_out(request):
     auth.logout(request)
-    response = redirect(request.headers['Referer'])
-    response.set_cookie(key='nickname', value='')
-    return response
+    return redirect(request.headers['Referer'])
 
 
 def validate_email(value):
