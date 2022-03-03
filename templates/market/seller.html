@@ -104,11 +104,7 @@ seller
 
                 <div id="imgbox">
 {#                로그인한 유저랑 판매자랑 같으면 디테일페이지, 다르면 구매자페이지로 이동#}
-                    {% if user == owner %}
                     <img class="main_img" src="{{ drawing.img }}" onclick="location.href = '{% url 'detail' drawing.owner_id drawing.pk %}'">
-                    {% else %}
-                    <img class="main_img" src="{{ drawing.img }}" onclick="location.href = '{% url 'buy' drawing.owner_id drawing.pk %}'">
-                    {% endif %}
                     <div id="imginfo">
                             <div id="info_left">
                                 <img src="{{ owner.img }}" class='profile_aa'>
