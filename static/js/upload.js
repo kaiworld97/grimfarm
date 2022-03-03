@@ -78,22 +78,21 @@ function img_style_change() {
 
 function posting() {
     const username = document.getElementById('user_nickname')
-    if (username == null){
+    if (username == null) {
         return alert('Please Sign in')
     }
     let key = String(new Date().getTime()) + username.innerText.split(' ')[0]
     let form_data = new FormData()
 
 
-
-    if(input_type == "url"){
+    if (input_type == "url") {
         form_data.append("img_url", input_now)
-    }else{
+    } else {
         form_data.append("img", input_now)
     }
-    if(style_type == "url"){
+    if (style_type == "url") {
         form_data.append("style_url", style_now)
-    }else{
+    } else {
         form_data.append("style_img", style_now)
     }
     form_data.append("key", key)
@@ -111,7 +110,7 @@ function posting() {
         enctype: 'multipart/form-data',
         success: function (response) {
             console.log(response['file_url'])
-            document.getElementById('output_img').src = response['file_url']
+            document.getElementById('output_img').src =
             document.getElementById('output_url').value = response['file_url']
         }
     });
@@ -122,7 +121,7 @@ function posting1() {
         return alert('Nope!')
     }
     const username = document.getElementById('user_nickname')
-    if (username == null){
+    if (username == null) {
         return
     }
     document.getElementById('style_box').classList.add('fade-out-box')
@@ -395,7 +394,7 @@ function download_img() {
     down_link.href = document.getElementById('output_img').src
     down_link.download = "output_img.png";
     down_link.click();
-    down_link.remove()
+    // down_link.remove()
 }
 
 function save_sell() {
